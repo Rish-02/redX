@@ -1,0 +1,210 @@
+.w-100{
+    width: 100%;
+}
+
+.top-col{
+    display: flex;
+    align-items: flex-end;
+    height: 3rem;
+    /* margin-left: 50rem; */
+    /* margin-right: 5rem; */
+}
+.logo{
+    width: 5rem;
+    margin-top: 0;
+    padding-right: 1rem;
+}
+.btn.btn-primary-nav{
+    background-color: #6aba78;
+    font-size: small;
+    border-color: #6aba78;
+}
+input#inlineFormInputName{
+    font-size: small;
+}
+input#inlineFormInputGroupUsername{
+    font-size: small;
+}
+
+nav.navbar{
+    /* justify-content:flex-start; */
+    /* margin-left: 12.5rem ; */
+    height: 5rem;    
+}
+.nav-section {
+    margin-top: 10px;
+    border-top: 1px solid #dddddd;
+    padding: 0;
+}
+.navbar-brand img{
+    width: 170px;
+    margin-bottom: -30%;
+}
+.nav-container {
+    width: 64%;
+    margin: 0.5rem auto;
+}
+.nav-item {
+    margin-right: 3%;
+}
+
+a.nav-link{
+    color: #6b6b6b;
+}
+ul{
+    margin-left: 3.5rem;
+}
+img{
+   width: 13%;
+}
+.banner{
+    background: url(./bg-header.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 426px;
+    position: relative;
+    z-index: -1;
+}
+.banner-img{
+    width: 100%;
+}
+.banner .options {
+    margin: 20px auto;
+    position: absolute;
+    bottom: 20px;
+    height: auto;
+    width: 100%;
+}
+.options {
+    /* margin: 0 auto -300px auto; */
+    margin-bottom: -300px;
+}
+.opt-btn {
+    height: 60px;
+    padding: 0 15px;
+    margin: 20px auto;
+    color: white;
+    line-height: 60px;
+    font-size: 160%;
+    font-weight: 100;
+}
+.opt-btn div {
+    /* background-color: blue; */
+    border-radius: 5px;
+    padding: 0 10px;
+    height: 100%;
+    color: white;
+}
+.opt-btn div i {
+    line-height: 60px;
+    float: right;
+}
+.opt-btn div i:hover {
+    animation: move 0.5s steps(10) infinite alternate;
+}
+.info {
+    padding: 20px 0 20px;
+}
+.info .container {
+    padding: 50px 0 30px;
+}
+.info-btn {
+    /* background-color: #dddddd; */
+    color: #6b6b6b;
+    border: 1px solid #dddddd;
+}
+.schools {
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.schools li {
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    width: 100%;
+    height: 120px;
+    margin: 15px;
+}
+
+.schools li a img{
+    margin: 40px 60px;
+    width: 60%;
+}
+/* .container{
+    padding: 5rem 0;
+} */
+ h3{
+    padding-bottom: 1rem;
+}
+.none{
+    /* margin: 3rem 13rem ; */
+}
+.about {
+    margin-top: 6rem;
+    margin-bottom: 1.5rem;
+}
+.accordion-container {
+    padding: 3rem;
+}
+.accordion .card {
+    margin-bottom: 20px;
+}
+.accordion .card .card-header {
+    background-color:#50AF5F;
+}
+.accordion .card .card-header:hover {
+    background-color:#65c975;
+}
+.accordion .card .card-body {
+    border: none;
+}
+.btn-link {
+    color: white;
+    font-size: large;
+    text-decoration: none;
+}
+.btn-link:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.news {
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    padding: 30px;
+    width: 100%;
+    height: 300px;
+}
+.row{
+    margin:0;
+}
+.footer {
+    padding: 3rem 0;
+    background-color: #50AF5F;
+    color: white;
+}
+.facebook {
+    color: white;
+}
+.links {
+    columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.links li a {
+    font-size: 95%;
+    font-weight: 100;
+    color: white;
+    padding: 2px 7px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.links li a:hover {
+    color: white;
+    background-color: #4C9257;
+    text-decoration: none;
+}
