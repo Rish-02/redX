@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="welcome.css">
+
+    <title>itclix.nl</title>
+  </head>
+  <body>
+    <div class="top">
+        <div class="row w-100">
+          <div class="col-6"></div>
+          <div class="col-6 top-col">
+            <img src="itclixlogo.svg" class="logo">
+            <div class="w-100">
+            <form method="Post" action="#">
+                <div class="form-row align-items-center">
+                  <div class="col-sm-3 my-1">
+                    <label class="sr-only" for="inlineFormInputName">Email</label>
+                    <input type="email" name="email" class="form-control" id="inlineFormInputName" placeholder="E-mailadres">
+                  </div>
+                  <div class="col-sm-3 my-1">
+                    <label class="sr-only" for="inlineFormInputGroupUsername">Password</label>
+                    <div class="input-group">
+                      <input type="password" name="password" class="form-control" id="inlineFormInputGroupUsername" placeholder="Wachtwoord">
+                    </div>
+                  </div>
+                  <div class="col-auto my-1">
+                    <button type="submit" class="btn btn-primary-nav" name="submit" style="color: white;">Inloggen</button>
+                  </div>
+                </div>
+            </div>
+          </form>
+          </div>
+        </div>
+
+    </div>
+
+    <div class="container-fluid nav-section">
+      <div class="nav-container">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="PMT.png"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">HOME</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">TALENTEN</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">PROFESSIONALS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">COACHES</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">INLOGGEN</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <!--SECTION 1-->
+    <section class="banner">
+      <div class="options">
+       <div class="container">
+         <!-- <div class="row">
+           <div class="col-sm-4 opt-btn">
+             <div style="background-color: #48c16a;" onclick="loginPage()">Talenten<i class="arrow-right fa fa-angle-right fa-lg"></i></div>
+           </div>
+           <div class="col-sm-4 opt-btn">
+             <div style="background-color: #469ee2;" onclick="loginPage()">Professionals<i class="arrow-right fa fa-angle-right fa-lg"></i></div>
+           </div>
+           <div class="col-sm-4 opt-btn">
+             <div style="background-color: #e59e2e;" onclick="loginPage()">Begeleiders<i class="arrow-right fa fa-angle-right fa-lg"></i></div>
+           </div>
+         </div> -->
+        </div>
+      </div>
+   </section>
+
+    <!-- section for profile details -->
+    <!-- <div class="heading"><h3>Talent</h3></div> -->
+    <section class="profile container">
+      <div class="row">
+        <div class="col-md-4">
+          <!-- <table class="table table-bordered">
+            <tbody>
+              <tr><td>Mijn Matches</td></tr>
+              <tr><td>Mijn stages</td></tr>
+              <tr><td>Mijn inbox</td></tr>
+              <tr><td>Mijn profiel</td></tr>
+              <tr><td>Mijn account</td></tr>
+              <tr><td>Downloads</td></tr>  
+              <tr><td>Vraag & antwoord</td></tr>
+            </tbody>
+          </table> -->
+          <div class="list-group main-option">
+            <a class="list-group-item list-group-item-action active" onclick="changeView(this)">Mijn Matches</a>
+            <a class="list-group-item list-group-item-action" onclick="changeView(this)">Mijn stages</a>
+            <a class="list-group-item list-group-item-action" onclick="changeView(this)">Mijn inbox</a>
+            <a class="list-group-item list-group-item-action" onclick="changeView(this)">Mijn profiel</a>
+            <a class="list-group-item list-group-item-action" onclick="changeView(this)">Mijn accountp</a>
+            <a class="list-group-item list-group-item-action" onclick="changeView(this)">Downloads</a>
+            <a class="list-group-item list-group-item-action" onclick="changeView(this)">Vraag & antwoord</a>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="profile-description">
+            <div class="row ml-1 w-100">
+              <div class="col-sm-5 text-center">This will be<br> profile image</div>
+              <div class="col-sm-7">
+               <div class="account-details">
+                <h2 class="profile-name">Wilma Pieterse</h2>
+                <h4 class="profile-address">A. van Leeuwenhoekweg
+                  2408 AN</h4><br>
+                <p class="profile-email"><a href="">alent2@nmoprojecten.nl</a></p>
+               </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- section main -->
+    <section class="main container mt-4 main-option-view" id="mijn-profiel" for="Mijn profiel">
+      <div class="personal-info">
+        <div class="profile-heading">
+          <h4 class="">Mijn profiel</h4>
+        </div>
+        <div class="personal-info-box">
+          <h3>Persoonsgegevens</h3>
+          <form method="POST">
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-5 col-form-label">Voornaam</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" name="email" id="inputEmail3" placeholder="">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Tussenvoegsels</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" name="sometext" id="inputPassword3" placeholder="">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Achternaam</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" name="sometext" id="inputPassword3" placeholder="">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Geslacht</label>
+              <div class="col-sm-7">
+                <select id="inputState" class="form-control">
+                  <option selected>Kiezen...</option>
+                  <option>Man</option>
+                  <option>Vrouw</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Geboortedatum</label>
+              <div class="col-sm-7">
+                <input type="date" class="form-control" name="datepicker" id="datepicker" />
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="personal-info-box">
+          <h3>Contactgegevens</h3>
+          <form method="POST">
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-5 col-form-label">Adres & huisnummer</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" name="address" id="inputaddres" placeholder="">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Postcode & plaats</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" name="sometext" id="inputPassword3" placeholder="">
+                <input type="text" class="form-control" name="sometext" id="inputPasswordm" placeholder="">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Provincie</label>
+              <div class="col-sm-7">
+                <select id="inputState" class="form-control">
+                  <option selected>Kiezen...</option>
+                  <option>South Holland</option>
+                  <option>Zealand</option>
+                  <option>Limburg</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Telefoon</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" name="sometext" id="inputPassword3" placeholder="">
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="personal-info-box">
+          <h3>School</h3>
+          <form method="POST">
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-5 col-form-label">Schoolnaam</label>
+              <div class="col-sm-7">
+                <select id="inputState" class="form-control">
+                  <option selected>Kiezen...</option>
+                  <option>Alphen College</option>
+                  <option>Apps School</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Schoolcode</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" name="sometext" id="inputPassword3" placeholder="">
+              </div>
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Schoolcode</label>
+              <div class="col-sm-7">
+                <p id="subline">This code is used for verification purposes. Contact your supervisor if you do not (yet) know this code.</p>
+              </div>
+              
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Opleiding</label>
+              <div class="col-sm-7">
+                <select id="inputState" class="form-control">
+                  <option selected>Kiezen...</option>
+                  <option>vmbo</option>
+                  <option>Havo</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Opleidingsniveau</label>
+              <div class="col-sm-7">
+                <select id="inputState" class="form-control">
+                  <option selected>Kiezen...</option>
+                  <option>Vmbo basis</option>
+                  <option>vmbo kader</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Klas</label>
+              <div class="col-sm-7">
+                <select id="inputState" class="form-control">
+                  <option selected>Kiezen...</option>
+                  <option>klas 1</option>
+                  <option>klas 4</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Begeleider</label>
+              <div class="col-sm-7">
+                <select id="inputState" class="form-control">
+                  <option selected>Kiezen...</option>
+                  <option>Appleman, Joost</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="personal-info-box">
+          <h3>Stage</h3>
+          <div class="sub-stage">Leerdomeinen</div>
+          <p class="info">Selecteer hier maximaal 3 leerdomeinen waarin u geïnteresseerd bent. Dubbelklik op een leerdomein of selecteer een leerdomein en gebruik de pijltoets om deze toe te voegen.</p>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="list-group domains-available">
+                  <a class="list-group-item list-group-item-action" onclick="swapDomain(this)">Ambacht, laboratorium en</a>
+                  <a class="list-group-item list-group-item-action" onclick="swapDomain(this)">Bouw en infra</a>
+                  <a class="list-group-item list-group-item-action" onclick="swapDomain(this)">afbouw, hout en onderhoud</a>
+                  <a class="list-group-item list-group-item-action" onclick="swapDomain(this)">Economie en administratie</a>
+                  <a class="list-group-item list-group-item-action" onclick="swapDomain(this)">Handel en ondernemerschap</a>
+                  <a class="list-group-item list-group-item-action" onclick="swapDomain(this)">Horeca en bakkerij</a>
+                </div>
+              </div>
+              <div class="col-md-1" id="icon-mid"></div>
+              <div class="col-md-5">
+                <div class="list-group domains-selected">
+                  <!-- <a class="list-group-item list-group-item-action" onclick="swapDomain(this)">Horeca en bakkerij</a> -->
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+          <div class="sub-stage">Stage</div>
+          <p class="info-main">Selecteer hier het type stage waar u op dit moment naar op zoek bent. Selecteer daaronder de periode waarin u deze stage wilt gaan lopen.</p>
+          <p class="info">Selecteer hier één of meerdere stageperiodes.</p>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="list-group internships-available">
+                  <a href="#" class="list-group-item list-group-item-action">blockstage</a>
+                  <a href="#" class="list-group-item list-group-item-action">lintstage</a>
+                  <a href="#" class="list-group-item list-group-item-action">basis/kader</a>
+                  <a href="#" class="list-group-item list-group-item-action">theoretische leerweg</a>
+                </div>
+              </div>
+              <div class="col-md-1" id="icon-mid"></div>
+              <div class="col-md-5">
+                <div class="list-group internships-selected">
+                  <!-- <a class="list-group-item list-group-item-action" onclick="swapDomain(this)">Horeca en bakkerij</a> -->
+                </div>
+              </div>
+              <!-- <div class="col-sm">
+                <div class="list-group">
+                  <a href="#" class="list-group-item list-group-item-action">blockstage</a>
+                  <a href="#" class="list-group-item list-group-item-action">lintstage</a>
+                  <a href="#" class="list-group-item list-group-item-action">basis/kader</a>
+                  <a href="#" class="list-group-item list-group-item-action">theoretische leerweg</a>
+                </div>
+              </div>
+              <div class="col-sm" id="icon-mid"></div>
+              <div class="col-sm">
+                One of three columns
+              </div>    -->
+            </div>
+          </div>
+
+          <p class="info">Selecteer hier één of meerdere stageperiodes.</p>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="list-group periods-available">
+                  <a href="#" class="list-group-item list-group-item-action">november t/m maart</a>
+                  <a href="#" class="list-group-item list-group-item-action">september t/m november</a>
+                  <a href="#" class="list-group-item list-group-item-action">april</a>
+                </div>
+              </div>
+              <div class="col-md-1" id="icon-mid"></div>
+              <div class="col-md-5">
+                <div class="list-group periods-selected">
+                  <!-- <a class="list-group-item list-group-item-action" onclick="swapDomain(this)">Horeca en bakkerij</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>          
+
+
+        <div class="personal-info-box">
+          <h3>Vaardigheden</h3>
+          <div class="sub-stage">Mijn sterke punten</div>
+          <p class="info">Wat vindt u goed aan uzelf? Of waar bent u goed in? Selecteer hier maximaal 5 punten die het beste bij u passen. Dubbelklik op een punt of selecteer een punt en gebruik de pijltoets om deze toe te voegen.</p>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <div class="list-group">
+                  <a href="#" class="list-group-item list-group-item-action">behulpzaam</a>
+                  <a href="#" class="list-group-item list-group-item-action">betrokken</a>
+                  <a href="#" class="list-group-item list-group-item-action">bescheiden</a>
+                  <a href="#" class="list-group-item list-group-item-action">creatief</a>
+                </div>
+              </div>
+              <div class="col-sm" id="icon-mid"></div>
+              <div class="col-sm">
+                One of three columns
+              </div>
+            </div>
+        </div>
+
+        <div class="sub-stage">Talenkennis</div>
+          <p class="info">Selecteer hier alle talen welke u mondeling en/of schriftelijk beheerst. Dubbelklik op een taal of selecteer een taal en gebruik de pijltoets om deze toe te voegen.</p>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <div class="list-group">
+                  <a href="#" class="list-group-item list-group-item-action">blockstage</a>
+                  <a href="#" class="list-group-item list-group-item-action">lintstage</a>
+                  <a href="#" class="list-group-item list-group-item-action">basis/kader</a>
+                  <a href="#" class="list-group-item list-group-item-action">theoretische leerweg</a>
+                </div>
+              </div>
+              <div class="col-sm" id="icon-mid"></div>
+              <div class="col-sm">
+                One of three columns
+              </div>   
+            </div>
+          </div>
+
+        <div class="sub-stage">Rijbewijs</div>
+          <p class="info">Beschikt u over één of meerdere rijbewijzen? Selecteer ze dan hieronder. Dubbelklik op een rijbewijs of selecteer een rijbewijs en gebruik de pijltoets om deze toe te voegen.</p>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <div class="list-group">
+                  <a href="#" class="list-group-item list-group-item-action">Rijbewijis A</a>
+                  <a href="#" class="list-group-item list-group-item-action">Rijbewijis AM</a>
+                  <a href="#" class="list-group-item list-group-item-action">Rijbewijis B</a>
+                  <a href="#" class="list-group-item list-group-item-action">Rijbewijis BE</a>
+                </div>
+              </div>
+              <div class="col-sm" id="icon-mid"></div>
+              <div class="col-sm">
+                One of three columns
+              </div>
+            </div>
+        </div>
+      </div>
+
+
+      <div class="personal-info-box">
+        <h3>Hobby & Vrije tijd</h3>
+        <div class="sub-stage">Hobby's</div>
+        <p class="info">Geef hier op welke hobby's u heebt. Staat uw hobby er niet bij? Selecteer dan 'Overige'. Dubbelklik op een hobby of selecteer een hobby en gebruik de pijltoets om deze toe te voegen.</p>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">Lezen</a>
+                <a href="#" class="list-group-item list-group-item-action">Koken</a>
+                <a href="#" class="list-group-item list-group-item-action">Films</a>
+                <a href="#" class="list-group-item list-group-item-action">Gamen</a>
+              </div>
+            </div>
+            <div class="col-sm" id="icon-mid"></div>
+            <div class="col-sm">
+              One of three columns
+            </div>
+          </div>
+      </div>
+
+      <div class="sub-stage">Sporten</div>
+        <p class="info">Geef hier op welke sport(en) u beoefent. Staat uw sport er niet bij? Selecteer dan 'Overige'. Dubbelklik op een sport of selecteer een sport en gebruik de pijltoets om deze toe te voegen.</p>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">Hockey</a>
+                <a href="#" class="list-group-item list-group-item-action">Tennis</a>
+                <a href="#" class="list-group-item list-group-item-action">Fitness</a>
+                <a href="#" class="list-group-item list-group-item-action">Basketbal</a>
+              </div>
+            </div>
+            <div class="col-sm" id="icon-mid"></div>
+            <div class="col-sm">
+              One of three columns
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+        <!-- <div class="personal-info-box">
+          <h3>Persoonsgegevens</h3>
+          <form method="POST">
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-5 col-form-label">Voornaam</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" name="email" id="inputEmail3" placeholder="">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Tussenvoegsels</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" name="sometext" id="inputPassword3" placeholder="">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Achternaam</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" name="sometext" id="inputPassword3" placeholder="">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Geslacht</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" name="sometext" id="inputPassword3" placeholder="">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-5 col-form-label">Geboortedatum</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" name="sometext" id="inputPassword3" placeholder="">
+              </div>
+            </div>
+          </form>
+        </div> -->
+      </div>
+    </section>
+
+    <!--SECTION 3-->
+    
+
+    <footer class="footer container-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6">
+            <h3 class="footer">Over ons</h3>
+            <div class="content-footer">
+              <p>Professional meets Talent (PMT) is een platform waar Professionals (mensen uit de beroepspraktijk) en Talenten (scholieren van het vmbo) elkaar kunnen ...lees verder</p>
+              <a href="" class="facebook">Volg ons op Facebook</a>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <h3 class="footer">Links</h3>
+            <ul class="links">
+              <li><a href="">Home</a></li>
+              <li><a href="">Talenten</a></li>
+              <li><a href="">Professionals</a></li>
+              <li><a href="">Coaches</a></li>
+              <li><a href="">Inloggen</a></li>
+              <li><a href="">Meest gestelde vragen</a></li>
+              <li><a href="">Werkwijze</a></li>
+              <li><a href="">Ervaringen</a></li>
+              <li><a href="">Nieuws</a></li>
+              <li><a href="">Downloads</a></li>
+              <li><a href="">Scholen</a></li>
+              <li><a href="">Contact</a></li>
+              <li><a href="">Informatie voor bedrijven (professionals)</a></li>
+              <li><a href="">Informatie voor leerlingen (talenten)</a></li>
+            </ul>
+            
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootsraps -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+    <script src="./welcome.js"></script>
+  </body>
+</html>

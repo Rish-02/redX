@@ -38,10 +38,12 @@ nav.navbar{
 }
 .navbar-brand img{
     width: 170px;
+    position: relative;
+    z-index: 2;
     margin-bottom: -30%;
 }
 .nav-container {
-    width: 64%;
+    /*width: 64%;*/
     margin: 0.5rem auto;
 }
 .nav-item {
@@ -63,7 +65,7 @@ img{
     background-size: cover;
     height: 426px;
     position: relative;
-    z-index: -1;
+    /* z-index: -1; */
 }
 .banner-img{
     width: 100%;
@@ -81,6 +83,7 @@ img{
 }
 .opt-btn {
     height: 60px;
+    /* z-index: 1; */
     padding: 0 15px;
     margin: 20px auto;
     color: white;
@@ -95,12 +98,15 @@ img{
     height: 100%;
     color: white;
 }
+.opt-btn div:hover {
+    cursor: pointer;
+}
 .opt-btn div i {
     line-height: 60px;
     float: right;
 }
 .opt-btn div i:hover {
-    animation: move 0.5s steps(10) infinite alternate;
+    /* animation: move 0.5s steps(10) infinite alternate; */
 }
 .info {
     padding: 20px 0 20px;
@@ -207,4 +213,24 @@ img{
     color: white;
     background-color: #4C9257;
     text-decoration: none;
+}
+
+.login-form {
+    border: 1px solid #d6d6d6;
+    margin-bottom: 45px;
+    padding: 3%;
+    width: 100%;
+    height: auto;
+}
+.form-group {
+    margin: 1rem auto;
+}
+.submit-btn {
+    margin-top: 3rem;   
+}
+.submit {
+    background-color: #419be0;
+}
+.forgot {
+    color: #50af5f;
 }

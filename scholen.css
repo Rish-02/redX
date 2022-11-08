@@ -1,0 +1,52 @@
+.school-item {
+    height: 300px;
+    margin-bottom: 2rem;
+}
+.vcol-2 {
+    height: 15%;
+}
+.vcol-8 {
+    height: 70%;
+}
+
+.schoolTitle h4 {
+    display:table-cell;
+     vertical-align:middle;
+     font-weight: 200;
+}
+.schoolTitle, .schoolBody, .schoolFooter {
+    padding-left: 1.5rem;
+    border: 1px solid #e7e7e7;
+    color: #a6a6a6
+}
+.schoolTitle {
+    background-color: #50AF5f;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: white;
+    display: table;
+}
+.address {
+    width: 50%;
+    line-height: 1.8;
+    word-wrap: break-word;
+}
+.schoolFooter {
+    /* color: #a6a6a6; */
+    display: table;
+}
+.schoolFooter p {
+    display:table-cell;
+     vertical-align:middle;
+}
+.mail {
+    margin-left: 1rem;
+    margin-right: 0.2rem;
+}
+.square {
+    width: 100%;
+    height: 100%;
+    background-image: url(dp.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
