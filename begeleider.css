@@ -227,7 +227,7 @@ h3{
     display: block;
 }
 .profile-name {
-    color: #6aba78;
+    color: #e6a02f;
 }
 .profile-address, .profile-email a, .profile-email a:active:visited {
     color: #a2a2a2;
@@ -324,4 +324,37 @@ td{
     border: none;
     border-radius: 0;
     padding: 1rem 4rem;
+}
+.download{
+    border-bottom: #c3c3c3 dotted 1px;
+    margin: 1.5rem;
+}
+.download-link{
+    border: #e6a02f 1px solid;
+    height: 3rem;
+    width: fit-content;
+    background-color: #e59e2e;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+    padding: 1rem;
+    
+}
+.download-link-tal{
+    border:  #e6a02f 1px solid;
+    height: 3rem;
+    width: fit-content;
+    background-color: #e59e2e;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+}
+#url{
+    color: white;
+}
+.dp-profile{
+    border-radius: 50%;
+    width: 80%;
+    border: 7px solid #e59e2e;
+
 }

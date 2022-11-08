@@ -155,12 +155,15 @@ $contact = mysqli_fetch_array($result);
       <div class="col-md-8">
         <div class="profile-description">
           <div class="row ml-1 w-100">
-            <div class="col-sm-5 text-center">This will be<br> profile image</div>
+            <div class="col-sm-5 text-center"><img class="dp-profile" src="dp.jpg"></div>
             <div class="col-sm-7">
               <div class="account-details">
-                <h2 class="profile-name"><?php echo $profileData['firstName'] . ' ' . $profileData['lastName'] ?></h2>
+                <!-- <h2 class="profile-name"><?php echo $profileData['firstName'] . ' ' . $profileData['lastName'] ?></h2>
                 <h4 class="profile-address"><?php echo $contact['address'] ?></h4><br>
-                <p class="profile-email"><a href=""><?php echo $user['email'] ?></a></p>
+                <p class="profile-email"><a href=""><?php echo $user['email'] ?></a></p> -->
+                <h2 class="profile-name">Joost Appleman</h2>
+                <h4 class="profile-address">A. van Leeuwenhoekweg 2411 AN</h4><br>
+                <p class="profile-email"><a href="">supervisor2@nmoprojecten.nl</a></p>
               </div>
             </div>
           </div>
@@ -700,7 +703,7 @@ $contact = mysqli_fetch_array($result);
       <div class="profile-heading">
         <h4 class="head">Vraag & Antwoord</h4>
       </div>
-      <h5>Professional</h5>
+      <h5>Accompanist</h5>
       <div class="text">
         <p id="text">In deze categorie zijn geen vragen gevonden</p>
       </div>
