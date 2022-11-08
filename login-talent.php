@@ -29,7 +29,7 @@ if (array_key_exists("submit", $_POST)) {
 
       $Password = $_POST['password'];
       // echo "reached";
-      if ($Password == $row['password']) {
+      if ($Password == $row['password'] && $row['userType'] == 1) {
 
         $_SESSION['id'] = $row['userId'];
 
