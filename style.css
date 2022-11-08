@@ -29,7 +29,7 @@ input#inlineFormInputGroupUsername{
 nav.navbar{
     /* justify-content:flex-start; */
     /* margin-left: 12.5rem ; */
-    height: 5rem;    
+    height: 6rem;    
 }
 .nav-section {
     margin-top: 10px;
@@ -44,10 +44,37 @@ nav.navbar{
 }
 .nav-container {
     /*width: 64%;*/
-    margin: 0.5rem auto;
+    /* margin: 0.5rem auto; */
+}
+.navbar {
+    padding: 0;
 }
 .nav-item {
     margin-right: 3%;
+    display: table;
+}
+.nav-item a {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#navbarNav {
+    height: 100% !important;
+}
+.header-nav-item {
+    height: 100%;
+    border-bottom: 5px solid transparent;
+}
+.header-nav-item::after {
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+}
+
+.header-nav-item:hover::after {
+    color: #6aba78;
+    border-bottom: 5px solid #6aba78;
+   transform: scaleX(1);
+   transform-origin:  0% 50%;
 }
 
 a.nav-link{
@@ -105,9 +132,7 @@ img{
     line-height: 60px;
     float: right;
 }
-.opt-btn div i:hover {
-    /* animation: move 0.5s steps(10) infinite alternate; */
-}
+
 .info {
     padding: 20px 0 20px;
 }
@@ -143,9 +168,7 @@ img{
  h3{
     padding-bottom: 1rem;
 }
-.none{
-    /* margin: 3rem 13rem ; */
-}
+
 .about {
     margin-top: 6rem;
     margin-bottom: 1.5rem;

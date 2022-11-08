@@ -1,65 +1,73 @@
 <?php
-include('connection.php');
+ob_start();
 include('header-min.php');
-// session_start();
-// print_r($_SESSION);
-// print_r($_COOKIE);
-if(!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
-  header("Location: login.php");
+include('connection.php');
+if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
+  header('Location: login-talent.php');
   // echo "no session";
-}
-$userId = $_SESSION['id'];
+} else {
+  $userId = $_SESSION['id'];
 
-$link = mysqli_connect($host, $user, $password, $db);
+  $link = mysqli_connect($host, $user, $password, $db);
 
-// For profile data
-$query = "SELECT * FROM `profile` where userID = '" . $userId . "'";
-$result = mysqli_query($link, $query);
-$profileData = mysqli_fetch_array($result);
+  // For login data
+  $query = "SELECT * FROM `login` where userID = '" . $userId . "'";
+  $result = mysqli_query($link, $query);
+  $user = mysqli_fetch_array($result);
 
-if(array_key_exists("submit", $_POST)) {
-  $query = "INSERT INTO `profile`(`firstName`, `infixes`, `lastName`, `gender`, `dateOfBirth`, `userId`) VALUES ('".mysqli_real_escape_string($link,$_POST['firstName'])."','".mysqli_real_escape_string($link,$_POST['infixes'])."','".mysqli_real_escape_string($link,$_POST['lastName'])."','".mysqli_real_escape_string($link,$_POST['gender'])."','".mysqli_real_escape_string($link,$_POST['dateOfBirth'])."','".$userId."')";
-  echo $query;
-  if(mysqli_query($link, $query)){
-    echo "Data Submitted";
-  }else{
-    echo "Error";
+  if ($user['userType'] != 1) {
+    if ($user['userType'] != 2) {
+      header('Location: professional.php');
+    }
+    if ($user['userType'] != 3) {
+      header('Location: index.php');
+    }
   }
-}
 
-// For login data
-$query = "SELECT * FROM `login` where userID = '" . $userId . "'";
-$result = mysqli_query($link, $query);
-$user = mysqli_fetch_array($result);
+  // For profile data
+  $query = "SELECT * FROM `profile` where userID = '" . $userId . "'";
+  $result = mysqli_query($link, $query);
+  $profileData = mysqli_fetch_array($result);
 
-// For contact data
-$query = "SELECT * FROM `contact` where userID = '" . $userId . "'";
-$result = mysqli_query($link, $query);
-$contact = mysqli_fetch_array($result);
-
-
-if(array_key_exists("submit", $_POST)) {
-  $query = "INSERT INTO `contact`(`address`, `houseNumber`, `zipcode`, `city`, `province`, `phone`, `userId`) VALUES ('".mysqli_real_escape_string($link,$_POST['address'])."','".mysqli_real_escape_string($link,$_POST['houseNumber'])."','".mysqli_real_escape_string($link,$_POST['zipcode'])."','".mysqli_real_escape_string($link,$_POST['city'])."','".mysqli_real_escape_string($link,$_POST['province'])."','".mysqli_real_escape_string($link,$_POST['phone'])."','".$userId."')";
-  echo $query;
-  if(mysqli_query($link, $query)){
-    echo "Data Submitted";
-  }else{
-    echo "Error";
+  if (array_key_exists("submit", $_POST)) {
+    $query = "INSERT INTO `profile`(`firstName`, `infixes`, `lastName`, `gender`, `dateOfBirth`, `userId`) VALUES ('" . mysqli_real_escape_string($link, $_POST['firstName']) . "','" . mysqli_real_escape_string($link, $_POST['infixes']) . "','" . mysqli_real_escape_string($link, $_POST['lastName']) . "','" . mysqli_real_escape_string($link, $_POST['gender']) . "','" . mysqli_real_escape_string($link, $_POST['dateOfBirth']) . "','" . $userId . "')";
+    echo $query;
+    if (mysqli_query($link, $query)) {
+      echo "Data Submitted";
+    } else {
+      echo "Error";
+    }
   }
-}
 
-//for school
-$query = "SELECT * FROM `school` where userID = '" . $userId . "'";
-$result = mysqli_query($link, $query);
-$school = mysqli_fetch_array($result);
+  // For contact data
+  $query = "SELECT * FROM `contact` where userID = '" . $userId . "'";
+  $result = mysqli_query($link, $query);
+  $contact = mysqli_fetch_array($result);
 
-if(array_key_exists("submit", $_POST)) {
-  $query = "INSERT INTO `school`(`schoolName`, `schoolCode`, `education`, `attainment`, `class`, `accompanist`, `userID`) VALUES ('".mysqli_real_escape_string($link,$_POST['schoolName'])."','".mysqli_real_escape_string($link,$_POST['schoolCode'])."','".mysqli_real_escape_string($link,$_POST['education'])."','".mysqli_real_escape_string($link,$_POST['attainment'])."','".mysqli_real_escape_string($link,$_POST['class'])."','".mysqli_real_escape_string($link,$_POST['accompanist'])."','".$userId."')";
-  echo $query;
-  if(mysqli_query($link, $query)){
-    echo "Data Submitted";
-  }else{
-    echo "Error";
+
+  if (array_key_exists("submit", $_POST)) {
+    $query = "INSERT INTO `contact`(`address`, `houseNumber`, `zipcode`, `city`, `province`, `phone`, `userId`) VALUES ('" . mysqli_real_escape_string($link, $_POST['address']) . "','" . mysqli_real_escape_string($link, $_POST['houseNumber']) . "','" . mysqli_real_escape_string($link, $_POST['zipcode']) . "','" . mysqli_real_escape_string($link, $_POST['city']) . "','" . mysqli_real_escape_string($link, $_POST['province']) . "','" . mysqli_real_escape_string($link, $_POST['phone']) . "','" . $userId . "')";
+    echo $query;
+    if (mysqli_query($link, $query)) {
+      echo "Data Submitted";
+    } else {
+      echo "Error";
+    }
+  }
+
+  //for school
+  $query = "SELECT * FROM `school` where userID = '" . $userId . "'";
+  $result = mysqli_query($link, $query);
+  $school = mysqli_fetch_array($result);
+
+  if (array_key_exists("submit", $_POST)) {
+    $query = "INSERT INTO `school`(`schoolName`, `schoolCode`, `education`, `attainment`, `class`, `accompanist`, `userID`) VALUES ('" . mysqli_real_escape_string($link, $_POST['schoolName']) . "','" . mysqli_real_escape_string($link, $_POST['schoolCode']) . "','" . mysqli_real_escape_string($link, $_POST['education']) . "','" . mysqli_real_escape_string($link, $_POST['attainment']) . "','" . mysqli_real_escape_string($link, $_POST['class']) . "','" . mysqli_real_escape_string($link, $_POST['accompanist']) . "','" . $userId . "')";
+    echo $query;
+    if (mysqli_query($link, $query)) {
+      echo "Data Submitted";
+    } else {
+      echo "Error";
+    }
   }
 }
 
@@ -256,113 +264,113 @@ if(array_key_exists("submit", $_POST)) {
               <input type="date" class="form-control" value="<?php echo $profileData['dateOfBirth'] ?>" name="dateOfBirth" id="dob" />
             </div>
           </div>
-        <!-- </form> -->
+          <!-- </form> -->
       </div>
 
       <div class="personal-info-box">
         <h3>Contactgegevens</h3>
         <!-- <form method="POST"> -->
-          <div class="form-group row">
-            <label for="address" class="col-sm-5 col-form-label">Adres & huisnummer</label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" value="<?php echo $contact['address'] ?> " name="address" id="address" placeholder="">
-            </div>
-            <label for="houseNumber" class="col-sm-5 col-form-label"></label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" value="<?php echo $contact['houseNumber'] ?> " name="houseNumber" id="houseNumber" placeholder="">
-            </div>
+        <div class="form-group row">
+          <label for="address" class="col-sm-5 col-form-label">Adres & huisnummer</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" value="<?php echo $contact['address'] ?> " name="address" id="address" placeholder="">
           </div>
-          <div class="form-group row">
-            <label for="zipcode city" class="col-sm-5 col-form-label">Postcode & plaats</label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" name="zipcode" id="zipcode" value="<?php echo $contact['zipcode'] ?> " placeholder="">
-              <input type="text" class="form-control" name="city" value="<?php echo $contact['city'] ?> " id="city" placeholder="">
-            </div>
+          <label for="houseNumber" class="col-sm-5 col-form-label"></label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" value="<?php echo $contact['houseNumber'] ?> " name="houseNumber" id="houseNumber" placeholder="">
           </div>
-          <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-5 col-form-label">Provincie</label>
-            <div class="col-sm-7">
-              <select id="province" class="form-control">
-                <option></option>
-                <option>Kiezen</option>
-                <option>South Holland</option>
-                <option>Zealand</option>
-                <option>Limburg</option>
-              </select>
-            </div>
+        </div>
+        <div class="form-group row">
+          <label for="zipcode city" class="col-sm-5 col-form-label">Postcode & plaats</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" name="zipcode" id="zipcode" value="<?php echo $contact['zipcode'] ?> " placeholder="">
+            <input type="text" class="form-control" name="city" value="<?php echo $contact['city'] ?> " id="city" placeholder="">
           </div>
-          <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-5 col-form-label">Telefoon</label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" name="phone" value="<?php echo $contact['phone'] ?>" id="phone" placeholder="">
-            </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-sm-5 col-form-label">Provincie</label>
+          <div class="col-sm-7">
+            <select id="province" class="form-control">
+              <option></option>
+              <option>Kiezen</option>
+              <option>South Holland</option>
+              <option>Zealand</option>
+              <option>Limburg</option>
+            </select>
           </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-sm-5 col-form-label">Telefoon</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" name="phone" value="<?php echo $contact['phone'] ?>" id="phone" placeholder="">
+          </div>
+        </div>
         <!-- </form> -->
       </div>
 
       <div class="personal-info-box">
         <h3>School</h3>
         <!-- <form method="POST"> -->
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-5 col-form-label">Schoolnaam</label>
-            <div class="col-sm-7">
-              <select id="schoolName" class="form-control">
-                <option selected>Kiezen...</option>
-                <option>Alphen College</option>
-                <option>Apps School</option>
-              </select>
-            </div>
+        <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-5 col-form-label">Schoolnaam</label>
+          <div class="col-sm-7">
+            <select id="schoolName" class="form-control">
+              <option selected>Kiezen...</option>
+              <option>Alphen College</option>
+              <option>Apps School</option>
+            </select>
           </div>
-          <div class="form-group row">
-            <label for="schoolCode" class="col-sm-5 col-form-label">Schoolcode</label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" name="schoolCode" value="<?php echo $school['schoolCode'] ?>" id="schoolCode" placeholder="">
-            </div>
-            <label for="inputPassword3" class="col-sm-5 col-form-label"></label>
-            <div class="col-sm-7">
-              <p id="subline">This code is used for verification purposes. Contact your supervisor if you do not (yet) know this code.</p>
-            </div>
+        </div>
+        <div class="form-group row">
+          <label for="schoolCode" class="col-sm-5 col-form-label">Schoolcode</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" name="schoolCode" value="<?php echo $school['schoolCode'] ?>" id="schoolCode" placeholder="">
+          </div>
+          <label for="inputPassword3" class="col-sm-5 col-form-label"></label>
+          <div class="col-sm-7">
+            <p id="subline">This code is used for verification purposes. Contact your supervisor if you do not (yet) know this code.</p>
+          </div>
 
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-sm-5 col-form-label">Opleiding</label>
+          <div class="col-sm-7">
+            <select id="education" class="form-control">
+              <option selected>Kiezen...</option>
+              <option>vmbo</option>
+              <option>Havo</option>
+            </select>
           </div>
-          <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-5 col-form-label">Opleiding</label>
-            <div class="col-sm-7">
-              <select id="education" class="form-control">
-                <option selected>Kiezen...</option>
-                <option>vmbo</option>
-                <option>Havo</option>
-              </select>
-            </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-sm-5 col-form-label">Opleidingsniveau</label>
+          <div class="col-sm-7">
+            <select id="attainment" class="form-control">
+              <option selected>Kiezen...</option>
+              <option>Vmbo basis</option>
+              <option>vmbo kader</option>
+            </select>
           </div>
-          <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-5 col-form-label">Opleidingsniveau</label>
-            <div class="col-sm-7">
-              <select id="attainment" class="form-control">
-                <option selected>Kiezen...</option>
-                <option>Vmbo basis</option>
-                <option>vmbo kader</option>
-              </select>
-            </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-sm-5 col-form-label">Klas</label>
+          <div class="col-sm-7">
+            <select id="class" class="form-control">
+              <option selected>Kiezen...</option>
+              <option>klas 1</option>
+              <option>klas 4</option>
+            </select>
           </div>
-          <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-5 col-form-label">Klas</label>
-            <div class="col-sm-7">
-              <select id="class" class="form-control">
-                <option selected>Kiezen...</option>
-                <option>klas 1</option>
-                <option>klas 4</option>
-              </select>
-            </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-sm-5 col-form-label">Begeleider</label>
+          <div class="col-sm-7">
+            <select id="accompanist" class="form-control">
+              <option selected>Kiezen...</option>
+              <option>Appleman, Joost</option>
+            </select>
           </div>
-          <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-5 col-form-label">Begeleider</label>
-            <div class="col-sm-7">
-              <select id="accompanist" class="form-control">
-                <option selected>Kiezen...</option>
-                <option>Appleman, Joost</option>
-              </select>
-            </div>
-          </div>
+        </div>
         <!-- </form> -->
       </div>
 
@@ -631,7 +639,7 @@ if(array_key_exists("submit", $_POST)) {
           </div>
           <div class="col-sm">
             <!-- <form class="form-inline my-2 my-lg-0"> -->
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <!-- </form> -->
           </div>
           <div class="col-sm">
@@ -686,7 +694,7 @@ if(array_key_exists("submit", $_POST)) {
             </div>
             <div class="col">
               <!-- <form class="form-inline my-2 my-lg-0"> -->
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
               <!-- </form> -->
               <button class="btn-search" type="submit">Search</button>
             </div>
@@ -810,24 +818,24 @@ if(array_key_exists("submit", $_POST)) {
             <div class="my-account-tab">
               <h4>wachtwoord wijzigen</h4>
               <!-- <form method="POST"> -->
-                <div class="form-group row">
-                  <label for="currentPass" class="col-sm-5 col-form-label">huidig wachtwoord</label>
-                  <div class="col-sm-7">
-                    <input type="text" class="form-control" value="" name="currentPass" id="currentPass" placeholder="">
-                  </div>
+              <div class="form-group row">
+                <label for="currentPass" class="col-sm-5 col-form-label">huidig wachtwoord</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" value="" name="currentPass" id="currentPass" placeholder="">
                 </div>
-                <div class="form-group row">
-                  <label for="newPass" class="col-sm-5 col-form-label">nieuw wachtwoord</label>
-                  <div class="col-sm-7">
-                    <input type="text" class="form-control" value="" name="newPass" id="newPass" placeholder="">
-                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="newPass" class="col-sm-5 col-form-label">nieuw wachtwoord</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" value="" name="newPass" id="newPass" placeholder="">
                 </div>
-                <div class="form-group row">
-                  <label for="repeatPass" class="col-sm-5 col-form-label">herhaal wachtwoord</label>
-                  <div class="col-sm-7">
-                    <input type="text" class="form-control" value="" name="repeatPass" id="repeatPass" placeholder="">
-                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="repeatPass" class="col-sm-5 col-form-label">herhaal wachtwoord</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" value="" name="repeatPass" id="repeatPass" placeholder="">
                 </div>
+              </div>
               <!-- </form> -->
             </div>
           </div>
@@ -835,12 +843,12 @@ if(array_key_exists("submit", $_POST)) {
             <div class="my-account-tab">
               <h4> e-mailadres wijzigen</h4>
               <!-- <form method="POST"> -->
-                <div class="form-group row">
-                  <label for="newEmail" class="col-sm-5 col-form-label">e-mailadres</label>
-                  <div class="col-sm-7">
-                    <input type="text" class="form-control" value="" name="newEmail" id="newEmail" placeholder="">
-                  </div>
+              <div class="form-group row">
+                <label for="newEmail" class="col-sm-5 col-form-label">e-mailadres</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" value="" name="newEmail" id="newEmail" placeholder="">
                 </div>
+              </div>
               <!-- </form> -->
             </div>
           </div>
@@ -848,12 +856,12 @@ if(array_key_exists("submit", $_POST)) {
             <div class="my-account-tab">
               <h4> Pasfoto wijzigen</h4>
               <!-- <form method="POST"> -->
-                <div class="form-group row">
-                  <label for="photo" class="col-sm-5 col-form-label">Pasfoto</label>
-                  <div class="col-sm-7">
-                    <input type="text" class="form-control" value="" name="photo" id="photo" placeholder="">
-                  </div>
+              <div class="form-group row">
+                <label for="photo" class="col-sm-5 col-form-label">Pasfoto</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" value="" name="photo" id="photo" placeholder="">
                 </div>
+              </div>
             </div>
           </div>
         </div>
@@ -903,7 +911,7 @@ if(array_key_exists("submit", $_POST)) {
       </div>
     </div>
   </footer> -->
-  <?php 
+  <?php
   include('footer.html');
   ?>
 

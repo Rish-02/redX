@@ -1,9 +1,8 @@
 <?php
 ob_start();
-if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    } 
+if (!isset($_SESSION)) {
+  session_start();
+}
 include('header-min.php');
 include('connection.php');
 // print_r($_SESSION);
@@ -20,33 +19,30 @@ if (array_key_exists("submit", $_POST)) {
     $error = "there were errors:" . $error;
   } else {
     $link = mysqli_connect($host, $user, $password, $db);
-    $query = "SELECT * FROM `login` WHERE email = '".mysqli_real_escape_string($link, $_POST['email'])."'";
+    $query = "SELECT * FROM `login` WHERE email = '" . mysqli_real_escape_string($link, $_POST['email']) . "'";
 
     $result = mysqli_query($link, $query);
 
     $row = mysqli_fetch_array($result);
 
     if (isset($row)) {
-        
-        $Password = $_POST['password'];
-        // echo "reached";
-        if ($Password == $row['password']) {
-            
-            $_SESSION['id'] = $row['userId'];
-            
-            if (isset($_POST['stayLoggedIn']) AND $_POST['stayLoggedIn'] == '1') {
 
-                setcookie("id", $row['userId'], time() + 60*60*24*365);
+      $Password = $_POST['password'];
+      // echo "reached";
+      if ($Password == $row['password']) {
 
-            } 
+        $_SESSION['id'] = $row['userId'];
 
-              header("Location: professional.php");
-                
-        } 
+        if (isset($_POST['stayLoggedIn']) and $_POST['stayLoggedIn'] == '1') {
+
+          setcookie("id", $row['userId'], time() + 60 * 60 * 24 * 365);
+        }
+
+        header("Location: professional.php");
+      }
+    }
   }
 }
-    
-  }
 ?>
 
 <!DOCTYPE html>
@@ -112,15 +108,15 @@ if (array_key_exists("submit", $_POST)) {
             <button type="submit" class="btn btn-primary submit" name="submit">Inloggen</button>
           </div>
         </div>
-        <p><a href="" class="forgot">» wachtwoord vergeten?</a></p>
+        <p><a href="./forgot-password.php" class="forgot">» wachtwoord vergeten?</a></p>
       </form>
     </div>
   </div>
-<script>
-  // document.getElementById('submit').click(function(event){
-  //   event.preventDefault(0);
-  // });
-</script>
+  <script>
+    // document.getElementById('submit').click(function(event){
+    //   event.preventDefault(0);
+    // });
+  </script>
 
   <?php
   include('footer.html');
