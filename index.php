@@ -86,7 +86,7 @@ if (array_key_exists("submit", $_POST)) {
             <div style="background-color: #469ee2;" onclick="loginProfPage()">Professionals<i class="arrow-right fa fa-angle-right fa-lg"></i></div>
           </div>
           <div class="col-sm-4 opt-btn">
-            <div style="background-color: #e59e2e;" onclick="loginPage()">Begeleiders<i class="arrow-right fa fa-angle-right fa-lg"></i></div>
+            <div style="background-color: #e59e2e;" onclick="loginCoachPage()">Begeleiders<i class="arrow-right fa fa-angle-right fa-lg"></i></div>
           </div>
         </div>
       </div>

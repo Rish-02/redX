@@ -726,7 +726,7 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
         <h4>Beoordelingsformulieren</h4>
         <div>In te vullen door het Talent en de Professional, waarna het met elkaar wordt overlegd.</div>
         <div class="download-link-tal">
-          <a id="url" href="">beoordelingsformulieren_sinds_2016_2017.pdf (98 KB)
+          <a id="url" href=""><i class="fa-regular fa-file-pdf"></i>beoordelingsformulieren_sinds_2016_2017.pdf (98 KB)
           </a>
         </div>
       </div>
@@ -734,7 +734,7 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
         <h4>Handleiding Sectorwerkstuk GL klas 4</h4>
         <div>Leerjaar 4</div>
         <div class="download-link-tal">
-          <a id="url" href="">handleiding_sectorwerkstuk_gl_klas_4.pdf (335 KB)
+          <a id="url" href=""><i class="fa-regular fa-file-pdf"></i>handleiding_sectorwerkstuk_gl_klas_4.pdf (335 KB)
           </a>
         </div>
       </div>
@@ -742,7 +742,7 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
         <h4>Handleiding voor Professionals</h4>
         <div>Voor de stagebegeleider</div>
         <div class="download-link-tal">
-          <a id="url" href="">pmt_handleiding_professionals.pdf (274 KB)
+          <a id="url" href=""><i class="fa-regular fa-file-pdf"></i>pmt_handleiding_professionals.pdf (274 KB)
           </a>
         </div>
       </div>
@@ -750,7 +750,7 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
         <h4>Handleiding voor Talenten</h4>
         <div>= leerlingen</div>
         <div class="download-link-tal">
-          <a id="url" href="">pmt_handleiding_talenten.pdf (336 KB)
+          <a id="url" href=""><i class="fa-regular fa-file-pdf"></i>pmt_handleiding_talenten.pdf (336 KB)
           </a>
         </div>
       </div>
@@ -758,7 +758,7 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
         <h4>Werkboek Blokstage BBL-KBL-GL</h4>
         <div>Leerjaar 3</div>
         <div class="download-link-tal">
-          <a id="url" href="">werkboek_blokstage_bbl_kbl_gl_klas_3.pdf (282 KB)
+          <a id="url" href=""><i class="fa-regular fa-file-pdf"></i>werkboek_blokstage_bbl_kbl_gl_klas_3.pdf (282 KB)
           </a>
         </div>
       </div>
@@ -766,7 +766,7 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
         <h4>Werkboek Lintstage BBL-KBL</h4>
         <div>Leerjaar 4</div>
         <div class="download-link-tal">
-          <a id="url" href="">werkboek_lintstage_bbl_kbl.pdf (296 KB)
+          <a id="url" href=""><i class="fa-regular fa-file-pdf"></i>werkboek_lintstage_bbl_kbl.pdf (296 KB)
           </a>
         </div>
       </div>
@@ -774,7 +774,7 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
         <h4>Wet- en regelgeving</h4>
         <div>Belangrijke informatie</div>
         <div class="download-link-tal">
-          <a id="url" href="">wet_en_regelgeving_stage_vmbo.pdf (509 KB)
+          <a id="url" href=""><i class="fa-regular fa-file-pdf"></i>wet_en_regelgeving_stage_vmbo.pdf (509 KB)
           </a>
         </div>
       </div>

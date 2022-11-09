@@ -29,7 +29,7 @@ if (array_key_exists("submit", $_POST)) {
 
       $Password = $_POST['password'];
       // echo "reached";
-      if ($Password == $row['password'] && $row['userType'] == 1) {
+      if ($Password == $row['password'] && $row['userType'] == 3) {
 
         $_SESSION['id'] = $row['userId'];
 
@@ -37,7 +37,8 @@ if (array_key_exists("submit", $_POST)) {
 
           setcookie("id", $row['userId'], time() + 60 * 60 * 24 * 365);
         }
-        header("Location: welcome.php");
+
+        header("Location: begeleider.php");
       }
     }
   }
