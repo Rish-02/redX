@@ -13,7 +13,7 @@ if (isset($_SESSION) && array_key_exists("id", $_SESSION)) {
     $user = mysqli_fetch_array($result);
 
     if ($user['userType'] == 1) {
-        header('Location: welcome.php');
+        header('Location: talenten.php');
     } else if ($user['userType'] == 2) {
         header('Location: professional.php');
     } else if ($user['userType'] == 3) {
@@ -33,7 +33,7 @@ if (array_key_exists("submit", $_POST)) {
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="welcome.css">
+    <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="forgot-pass.css">
     <title>Document</title>
 </head>

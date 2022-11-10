@@ -1,6 +1,6 @@
 <?php
 ob_start();
-include('header.html');
+include('header-min.php');
 include('connection.php');
 session_start();
 if (array_key_exists("submit", $_POST)) {
@@ -39,7 +39,7 @@ if (array_key_exists("submit", $_POST)) {
         }
         // echo "<br>logged in";
         if ($row['userType' == 1]) {
-          header("Location: welcome.php");
+          header("Location: talenten.php");
         } else if ($row['userType' == 2]) {
           header("Location: professional.php");
         }

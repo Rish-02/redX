@@ -6,7 +6,7 @@ include('header-min.php');
 //     { 
 //         session_start(); 
 //     } 
-if (!array_key_exists("id", $_SESSION)) {
+if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
   header("Location: login-prof.php");
 } else {
   $userId = $_SESSION['id'];
@@ -19,11 +19,11 @@ if (!array_key_exists("id", $_SESSION)) {
   $user = mysqli_fetch_array($result);
 
   if ($user['userType'] != 2) {
-    if ($user['userType'] != 1) {
-      header('Location: welcome.php');
+    if ($user['userType'] == 1) {
+      header('Location: talenten.php');
     }
-    if ($user['userType'] != 3) {
-      header('Location: index.php');
+    if ($user['userType'] == 3) {
+      header('Location: begeleider.php');
     }
   }
 
@@ -64,7 +64,7 @@ if (!array_key_exists("id", $_SESSION)) {
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="welcome.css">
+  <link rel="stylesheet" href="main.css">
 
   <title>mijn-profiel</title>
 </head>
@@ -599,7 +599,7 @@ if (!array_key_exists("id", $_SESSION)) {
         <h4>Handleiding Sectorwerkstuk GL klas 4</h4>
         <div>leerjaar 4</div>
         <div class="download-link">
-          <a id="url" href=""><i class="fa-regular fa-file-pdf">handleiding_sectorwerkstuk_gl_klas_4.pdf (335 KB)
+          <a id="url" href=""><i class="fa-regular fa-file-pdf"></i>handleiding_sectorwerkstuk_gl_klas_4.pdf (335 KB)
           </a>
         </div>
       </div>
@@ -737,7 +737,7 @@ if (!array_key_exists("id", $_SESSION)) {
 
   <!-- Bootsraps -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
-  <script src="./welcome.js"></script>
+  <script src="./app.js"></script>
 
 </body>
 

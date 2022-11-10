@@ -122,17 +122,17 @@ if (array_key_exists("logout", $_POST)) {
                   <a class="nav-link" href="index.php">HOME</a>
                 </li>
                 <li class="nav-item header-nav-item">
-                  <a class="nav-link" href="./login.php">TALENTEN
+                  <a class="nav-link" href="login-talent.php">TALENTEN
                   </a>
                 </li>
                 <li class="nav-item header-nav-item">
-                  <a class="nav-link" href="./login.php">PROFESSIONALS</a>
+                  <a class="nav-link" href="login-prof.php">PROFESSIONALS</a>
                 </li>
                 <li class="nav-item header-nav-item">
-                  <a class="nav-link" href="./login.php">COACHES</a>
+                  <a class="nav-link" href="login-coach.php">COACHES</a>
                 </li>
                 <li class="nav-item header-nav-item">
-                  <a class="nav-link" href="./login.php">INLOGGEN</a>
+                  <a class="nav-link" href="index.php">INLOGGEN</a>
                 </li>
               </ul>
             </div>

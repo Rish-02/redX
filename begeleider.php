@@ -5,12 +5,26 @@ include('header-min.php');
 //     { 
 //         session_start(); 
 //     } 
-if(!array_key_exists("id", $_SESSION)) {
-  header("Location: login.php");
+if(!isset($_SESSION) || !array_key_exists("id", $_SESSION) ) {
+  header("Location: login-coach.php");
 }
 $userId = $_SESSION['id'];
 
 $link = mysqli_connect($host, $user, $password, $db);
+
+// For user data
+$query = "SELECT * FROM `login` where userID = '" . $userId . "'";
+$result = mysqli_query($link, $query);
+$user = mysqli_fetch_array($result);
+
+if($user['userType' != 3]) {
+  if($user['userType'] == 2){
+    header('Location: professional.php');
+  }
+  if($user['userType']== 1){
+    header('Location: talenten.php');
+  }
+}
 
 // For company data
 $query = "SELECT * FROM `company` where userID = '" . $userId . "'";
@@ -27,10 +41,7 @@ $query = "SELECT * FROM `profile` where userID = '" . $userId . "'";
 $result = mysqli_query($link, $query);
 $profileData = mysqli_fetch_array($result);
 
-// For user data
-$query = "SELECT * FROM `login` where userID = '" . $userId . "'";
-$result = mysqli_query($link, $query);
-$user = mysqli_fetch_array($result);
+
 
 // For profile data
 $query = "SELECT * FROM `contact` where userID = '" . $userId . "'";
@@ -307,7 +318,7 @@ $contact = mysqli_fetch_array($result);
   </section>
 
   <!--SECTION 3-->
-  <section for="mijn Matches" class="main-option-view" id="mijn-matches">
+  <section for="mijn talenten" class="main-option-view" id="mijn-talenten">
     <div class="personal-info container">
       <div class="container">
         <div class="row">
@@ -570,7 +581,6 @@ $contact = mysqli_fetch_array($result);
         <div>leerjaar 4</div>
         <div class="download-link">
           <a id="url" href="">handleiding_sectorwerkstuk_gl_klas_4.pdf (335 KB)
-            <i></i>
           </a>
         </div>
       </div>
@@ -579,7 +589,6 @@ $contact = mysqli_fetch_array($result);
         <div>= stagebegeleiders</div>
         <div class="download-link">
           <a id="url" href="">pmt_handleiding_professionals.pdf (274 KB)
-            <i></i>
           </a>
         </div>
       </div>
@@ -588,7 +597,6 @@ $contact = mysqli_fetch_array($result);
         <div>Leerjaar 3: verantwoording van het Talent</div>
         <div class="download-link">
           <a id="url" href="">werkboek_blokstage_bbl_kbl_gl_klas_3.pdf (282 KB)
-            <i></i>
           </a>
         </div>
       </div>
@@ -597,7 +605,6 @@ $contact = mysqli_fetch_array($result);
         <div>Leerjaar 4: verantwoording van het Talent</div>
         <div class="download-link">
           <a id="url" href="">werkboek_lintstage_bbl_kbl.pdf (296 KB)
-            <i></i>
           </a>
         </div>
       </div>
@@ -606,7 +613,6 @@ $contact = mysqli_fetch_array($result);
         <div>Belangrijke informatie</div>
         <div class="download-link">
           <a id="url" href="">wet_en_regelgeving_stage_vmbo.pdf (509 KB)
-            <i></i>
           </a>
         </div>
       </div>
@@ -747,7 +753,7 @@ $contact = mysqli_fetch_array($result);
 
   <!-- Bootsraps -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
-  <script src="./welcome.js"></script>
+  <script src="./app.js"></script>
 
 </body>
 
