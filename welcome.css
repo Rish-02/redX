@@ -49,6 +49,11 @@ nav.navbar{
 a.nav-link{
     color: #6b6b6b;
 }
+
+.header-nav-item {
+    
+}
+
 ul{
     margin-left: 3.5rem;
 }
