@@ -16,7 +16,7 @@ if (array_key_exists("submit", $_POST)) {
     $link = mysqli_connect($host, $user, $password, $db);
     $query = "SELECT * FROM `login` WHERE email = '" . mysqli_real_escape_string($link, $_POST['email']) . "'";
 
-    if($query == ""){
+    if ($query == "") {
       $error = "<script>alert('That email/password combination could not be found.')</script>";
     }
 
@@ -39,7 +39,7 @@ if (array_key_exists("submit", $_POST)) {
         }
         // echo "<br>logged in";
         if ($row['userType' == 1]) {
-          header("Location: talenten.php");
+          header("Location: welcome.php");
         } else if ($row['userType' == 2]) {
           header("Location: professional.php");
         }
@@ -100,24 +100,24 @@ if (array_key_exists("submit", $_POST)) {
     <h3 class="head" style="font-family:Calibri;">Professional</h3>
     <p style="font-family:Calibri;">Zodra u zich aanmeldt op onze site, kunt u een profiel aanmaken dat precies weergeeft in welk opleidingsdomein u werkzaam bent en wat de activiteiten van uw bedrijf of instelling zijn. U kunt aangeven naar wat voor talent u op zoek bent en gedurende welke periode.<br><br>
 
-De site matcht uw bedrijf of instelling met de juiste talenten in onze database. U kunt hier zelf een keuze uit maken en via de site contact leggen. Talenten die met u gematcht worden kunnen ook zelf via de site contact leggen.<br><br>
+      De site matcht uw bedrijf of instelling met de juiste talenten in onze database. U kunt hier zelf een keuze uit maken en via de site contact leggen. Talenten die met u gematcht worden kunnen ook zelf via de site contact leggen.<br><br>
 
-Wanneer u met elkaar verder wilt, wordt dat via een stageovereenkomst vastgelegd. De coach van het talent zal dan via de site de koppeling definitief maken.<br><br>
+      Wanneer u met elkaar verder wilt, wordt dat via een stageovereenkomst vastgelegd. De coach van het talent zal dan via de site de koppeling definitief maken.<br><br>
 
-Vanaf dat moment kunnen u en het talent via de site alles zelf invullen en beheren: stageboek, doelstellingen, dagverslagen en beoordelingen. De coach wordt automatisch op de hoogte gehouden van de vorderingen.<br><br>
+      Vanaf dat moment kunnen u en het talent via de site alles zelf invullen en beheren: stageboek, doelstellingen, dagverslagen en beoordelingen. De coach wordt automatisch op de hoogte gehouden van de vorderingen.<br><br>
 
-Na afloop van de stageperiode kunt u zelf aangeven of u in een toekomstige periode weer graag een talent ontvangt of dat u even geen stageplaats beschikbaar heeft.</p>
+      Na afloop van de stageperiode kunt u zelf aangeven of u in een toekomstige periode weer graag een talent ontvangt of dat u even geen stageplaats beschikbaar heeft.</p>
 
-<h3 class="head" style="font-family:Calibri;">Talent</h3>
-    <p style="font-family:Calibri;">Je coach of mentor helpt je bij het aanmaken van je profiel. In dit profiel geef je aan binnen welke opleidingsdomeinen je stage wilt lopen, welke opleiding  je volgt en wat jouw persoonlijke interesses zijn. Daarnaast geef je ook aan wat jouw sterke kanten zijn en gedurende welke periode jij stage gaat lopen.<br><br>
+    <h3 class="head" style="font-family:Calibri;">Talent</h3>
+    <p style="font-family:Calibri;">Je coach of mentor helpt je bij het aanmaken van je profiel. In dit profiel geef je aan binnen welke opleidingsdomeinen je stage wilt lopen, welke opleiding je volgt en wat jouw persoonlijke interesses zijn. Daarnaast geef je ook aan wat jouw sterke kanten zijn en gedurende welke periode jij stage gaat lopen.<br><br>
 
-De site matcht deze gegevens met een van de professionals in onze database. Je kunt dan via de site zelf contact leggen met een van hen maar een professional kan ook zelf contact leggen met jou.<br><br>
+      De site matcht deze gegevens met een van de professionals in onze database. Je kunt dan via de site zelf contact leggen met een van hen maar een professional kan ook zelf contact leggen met jou.<br><br>
 
-Wanneer een professional en jij met elkaar verder willen wordt dat via een stageovereenkomst vastgelegd.  Jouw coach of mentor maakt dan via de site de koppeling definitief.<br><br>
+      Wanneer een professional en jij met elkaar verder willen wordt dat via een stageovereenkomst vastgelegd. Jouw coach of mentor maakt dan via de site de koppeling definitief.<br><br>
 
-Vanaf dat moment kun je via de site al jouw opdrachten zelf invullen en beheren: stageboek, dagverslagen, doelstellingen, evaluaties en beoordelingen. Jouw coach wordt automatisch op de hoogte gehouden van jouw vorderingen.
+      Vanaf dat moment kun je via de site al jouw opdrachten zelf invullen en beheren: stageboek, dagverslagen, doelstellingen, evaluaties en beoordelingen. Jouw coach wordt automatisch op de hoogte gehouden van jouw vorderingen.
 
- </p>
+    </p>
   </div>
   <script>
     // document.getElementById('submit').click(function(event) {

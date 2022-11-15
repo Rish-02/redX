@@ -13,7 +13,7 @@ if (isset($_SESSION) && array_key_exists("id", $_SESSION)) {
     $user = mysqli_fetch_array($result);
 
     if ($user['userType'] == 1) {
-        header('Location: talenten.php');
+        header('Location: welcome.php');
     } else if ($user['userType'] == 2) {
         header('Location: professional.php');
     } else if ($user['userType'] == 3) {

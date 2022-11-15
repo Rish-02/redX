@@ -16,7 +16,7 @@ if (array_key_exists("submit", $_POST)) {
     $link = mysqli_connect($host, $user, $password, $db);
     $query = "SELECT * FROM `login` WHERE email = '" . mysqli_real_escape_string($link, $_POST['email']) . "'";
 
-    if($query == ""){
+    if ($query == "") {
       $error = "<script>alert('That email/password combination could not be found.')</script>";
     }
 
@@ -39,7 +39,7 @@ if (array_key_exists("submit", $_POST)) {
         }
         // echo "<br>logged in";
         if ($row['userType' == 1]) {
-          header("Location: talenten.php");
+          header("Location: welcome.php");
         } else if ($row['userType' == 2]) {
           header("Location: professional.php");
         }
@@ -98,12 +98,13 @@ if (array_key_exists("submit", $_POST)) {
     <h3 style="margin-top:20px;color:#48c16a;">Informatie voor bedrijven (professionals)</h3>
     <hr style="background-color:#48c16a;margin-top:-15px;">
     <p style="font-family:Calibri;">Steeds meer bedrijven zien de noodzaak en voordelen van maatschappelijk verantwoord ondernemen (MVO). Dat betekent dat zij rekening houden met de effecten van hun bedrijfsvoering op mens, milieu en maatschappij. Professional meets Talent nodigt u uit om uw maatschappelijke betrokkenheid te tonen op het gebied van Mens. Bij sociaal verantwoord ondernemen staat de mens centraal: de leerling en u.
-<br><br>
-Jongeren in onze samenleving hebben ervaringen en voorbeelden nodig om een goed beeld van de toekomst te vormen. Tijdens hun schoolloopbaan doen zij veel kennis op en leren verschillende vaardigheden. Het is belangrijk dat zij ervaringen opdoen buiten de school en de mogelijkheid krijgen om zich voor te bereiden op een beroep of vervolgopleiding. Waar kan dat nu beter dan bij u als professional? In onze ogen bent u als geen ander in staat om uw beroep met passie over te brengen aan onze scholieren.
-<br><br>
-Als professional kiest u zelf de leerling die mag komen stagelopen. U heeft de vrijheid om zelf het initiatief te nemen of het bij de leerling te leggen. Nadat u zich heeft aangemeld biedt de website een eenvoudige route om met drie muisklikken bij uw doel te komen.
-<br><br>
-In Alphen aan den Rijn en omgeving zijn veel bedrijven en instellingen die maatschappelijk verantwoord ondernemen. Bent u degene die Professional meets Talent een warm hart toe draagt? Wij zien uw <a href="#">aanmelding</a> graag tegemoet.</p>
+      <br><br>
+      Jongeren in onze samenleving hebben ervaringen en voorbeelden nodig om een goed beeld van de toekomst te vormen. Tijdens hun schoolloopbaan doen zij veel kennis op en leren verschillende vaardigheden. Het is belangrijk dat zij ervaringen opdoen buiten de school en de mogelijkheid krijgen om zich voor te bereiden op een beroep of vervolgopleiding. Waar kan dat nu beter dan bij u als professional? In onze ogen bent u als geen ander in staat om uw beroep met passie over te brengen aan onze scholieren.
+      <br><br>
+      Als professional kiest u zelf de leerling die mag komen stagelopen. U heeft de vrijheid om zelf het initiatief te nemen of het bij de leerling te leggen. Nadat u zich heeft aangemeld biedt de website een eenvoudige route om met drie muisklikken bij uw doel te komen.
+      <br><br>
+      In Alphen aan den Rijn en omgeving zijn veel bedrijven en instellingen die maatschappelijk verantwoord ondernemen. Bent u degene die Professional meets Talent een warm hart toe draagt? Wij zien uw <a href="#">aanmelding</a> graag tegemoet.
+    </p>
   </div>
   <script>
     // document.getElementById('submit').click(function(event) {

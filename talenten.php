@@ -16,11 +16,11 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
   $user = mysqli_fetch_array($result);
 
   if ($user['userType'] != 1) {
-    if ($user['userType'] == 2) {
+    if ($user['userType'] != 2) {
       header('Location: professional.php');
     }
-    if ($user['userType'] == 3) {
-      header('Location: begeleider.php');
+    if ($user['userType'] != 3) {
+      header('Location: index.php');
     }
   }
 
@@ -29,39 +29,21 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
   $result = mysqli_query($link, $query);
   $profileData = mysqli_fetch_array($result);
 
-  if (array_key_exists("submit", $_POST)) {
-    $query = "INSERT INTO `profile`(`firstName`, `infixes`, `lastName`, `gender`, `dateOfBirth`, `userId`) VALUES ('" . mysqli_real_escape_string($link, $_POST['firstName']) . "','" . mysqli_real_escape_string($link, $_POST['infixes']) . "','" . mysqli_real_escape_string($link, $_POST['lastName']) . "','" . mysqli_real_escape_string($link, $_POST['gender']) . "','" . mysqli_real_escape_string($link, $_POST['dateOfBirth']) . "','" . $userId . "')";
-    echo $query;
-    if (mysqli_query($link, $query)) {
-      echo "Data Submitted";
-    } else {
-      echo "Error";
-    }
-  }
-
   // For contact data
   $query = "SELECT * FROM `contact` where userID = '" . $userId . "'";
   $result = mysqli_query($link, $query);
   $contact = mysqli_fetch_array($result);
-
-
-  if (array_key_exists("submit", $_POST)) {
-    $query = "INSERT INTO `contact`(`address`, `houseNumber`, `zipcode`, `city`, `province`, `phone`, `userId`) VALUES ('" . mysqli_real_escape_string($link, $_POST['address']) . "','" . mysqli_real_escape_string($link, $_POST['houseNumber']) . "','" . mysqli_real_escape_string($link, $_POST['zipcode']) . "','" . mysqli_real_escape_string($link, $_POST['city']) . "','" . mysqli_real_escape_string($link, $_POST['province']) . "','" . mysqli_real_escape_string($link, $_POST['phone']) . "','" . $userId . "')";
-    echo $query;
-    if (mysqli_query($link, $query)) {
-      echo "Data Submitted";
-    } else {
-      echo "Error";
-    }
-  }
 
   //for school
   $query = "SELECT * FROM `school` where userID = '" . $userId . "'";
   $result = mysqli_query($link, $query);
   $school = mysqli_fetch_array($result);
 
-  if (array_key_exists("submit", $_POST)) {
-    $query = "INSERT INTO `school`(`schoolName`, `schoolCode`, `education`, `attainment`, `class`, `accompanist`, `userID`) VALUES ('" . mysqli_real_escape_string($link, $_POST['schoolName']) . "','" . mysqli_real_escape_string($link, $_POST['schoolCode']) . "','" . mysqli_real_escape_string($link, $_POST['education']) . "','" . mysqli_real_escape_string($link, $_POST['attainment']) . "','" . mysqli_real_escape_string($link, $_POST['class']) . "','" . mysqli_real_escape_string($link, $_POST['accompanist']) . "','" . $userId . "')";
+
+
+  if (isset($_POST) && array_key_exists("submit", $_POST)) {
+    echo "update";
+    $query = "UPDATE `profile` SET `firstName` = '" . mysqli_real_escape_string($link, $_POST['firstName']) . "', `infixes` = '" . mysqli_real_escape_string($link, $_POST['infixes']) . "', `lastName` = '" . mysqli_real_escape_string($link, $_POST['lastName']) . "', `gender` = '" . mysqli_real_escape_string($link, $_POST['gender']) . "', `dateOfBirth` = '" . mysqli_real_escape_string($link, $_POST['dateOfBirth']) . "', `userId` = . $userId . WHERE userId = .$userid.";
     echo $query;
     if (mysqli_query($link, $query)) {
       echo "Data Submitted";
@@ -70,6 +52,7 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
     }
   }
 }
+
 
 
 

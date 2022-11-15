@@ -20,7 +20,7 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
 
   if ($user['userType'] != 2) {
     if ($user['userType'] == 1) {
-      header('Location: talenten.php');
+      header('Location: welcome.php');
     }
     if ($user['userType'] == 3) {
       header('Location: begeleider.php');
@@ -46,6 +46,25 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
   $query = "SELECT * FROM `contact` where userID = '" . $userId . "'";
   $result = mysqli_query($link, $query);
   $contact = mysqli_fetch_array($result);
+
+
+
+  if (isset($_POST) && array_key_exists("submitProfile", $_POST)) {
+    echo "update";
+    $query = "UPDATE `company` SET `companyName`='" . mysqli_real_escape_string($link, $_POST['companyName']) . "',`address`='" . mysqli_real_escape_string($link, $_POST['address']) . "',`addNumber`='[value-3]',`zipcode`='" . mysqli_real_escape_string($link, $_POST['zipcode']) . "',`city`='" . mysqli_real_escape_string($link, $_POST['city']) . "',`province`='" . mysqli_real_escape_string($link, $_POST['province']) . "',`phone`='" . mysqli_real_escape_string($link, $_POST['phone']) . "',`website`='" . mysqli_real_escape_string($link, $_POST['website']) . "',`userId`= " . $userId . " WHERE userId = " . $userId . "";
+    echo $query;
+    if (mysqli_query($link, $query)) {
+      $query = "UPDATE `pcontact` SET `initials`='" . mysqli_real_escape_string($link, $_POST['initials']) . "',`infixes`='" . mysqli_real_escape_string($link, $_POST['infixes']) . "',`lastName`='" . mysqli_real_escape_string($link, $_POST['lastName']) . "',`sex`='" . mysqli_real_escape_string($link, $_POST['sex']) . "',`phone`='" . mysqli_real_escape_string($link, $_POST['phone']) . "',`accessibility`='" . mysqli_real_escape_string($link, $_POST['accessibility']) . "',`function`='" . mysqli_real_escape_string($link, $_POST['function']) . "',`userId`= " . $userId . " WHERE userId = " . $userId . "";
+      if (mysqli_query($link, $query)) {
+        header('Location: professional.php');
+      } else {
+        echo "Error";
+      }
+      // header('Location: welcome.php');
+    } else {
+      echo "Error";
+    }
+  }
 }
 
 
@@ -224,7 +243,7 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
           <div class="form-group row">
             <label for="province" class="col-sm-5 col-form-label">Provincie</label>
             <div class="col-sm-7">
-              <select id="province" class="form-control">
+              <select id="province" class="form-control" name="province">
                 <option selected>Kiezen...</option>
                 <option>Drenthe</option>
                 <option>Zuid-Holland</option>
@@ -244,65 +263,65 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
               <input type="url" class="form-control" value="<?php echo $company['website'] ?>" name="website" id="website" />
             </div>
           </div>
-        </form>
+
       </div>
 
       <div class="personal-info-box">
         <h3>Contactpersoon</h3>
-        <form method="POST">
-          <div class="form-group row">
-            <label for="initials" class="col-sm-5 col-form-label">Voorletters</label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" value="<?php echo $pContact['initials'] ?>" name="initials" id="initials" placeholder="">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="infixes" class="col-sm-5 col-form-label">Tussenvoegsels</label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" value="<?php echo $pContact['infixes'] ?>" name="infixes" id="infixes" placeholder="">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="lastName" class="col-sm-5 col-form-label">Achternaam</label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" value="<?php echo $pContact['lastName'] ?>" name="lastName" id="lastName" placeholder="">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="sex" class="col-sm-5 col-form-label">Geslacht</label>
-            <div class="col-sm-7">
-              <select id="sex" class="form-control">
-                <option selected>Kiezen...</option>
-                <option>Man</option>
-                <option>Vrouw</option>
-              </select>
-            </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="phone" class="col-sm-5 col-form-label">Telelfoon</label>
-            <div class="col-sm-7">
-              <input type="tel" class="form-control" value="<?php echo $pContact['phone'] ?>" name="phone" id="phone" />
-            </div>
+        <div class="form-group row">
+          <label for="initials" class="col-sm-5 col-form-label">Voorletters</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" value="<?php echo $pContact['initials'] ?>" name="initials" id="initials" placeholder="">
           </div>
+        </div>
+        <div class="form-group row">
+          <label for="infixes" class="col-sm-5 col-form-label">Tussenvoegsels</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" value="<?php echo $pContact['infixes'] ?>" name="infixes" id="infixes" placeholder="">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="lastName" class="col-sm-5 col-form-label">Achternaam</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" value="<?php echo $pContact['lastName'] ?>" name="lastName" id="lastName" placeholder="">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="sex" class="col-sm-5 col-form-label">Geslacht</label>
+          <div class="col-sm-7">
+            <select id="sex" class="form-control" name="sex">
+              <option selected>Kiezen...</option>
+              <option>Man</option>
+              <option>Vrouw</option>
+            </select>
+          </div>
+        </div>
 
-          <div class="form-group row">
-            <label for="accessibility" class="col-sm-5 col-form-label">Bereikbaarheid</label>
-            <div class="col-sm-7">
-              <select id="accessibility" class="form-control">
-                <option selected>Kiezen...</option>
-                <option>hele dag</option>
-                <option>in de middag</option>
-              </select>
-            </div>
+        <div class="form-group row">
+          <label for="phone" class="col-sm-5 col-form-label">Telelfoon</label>
+          <div class="col-sm-7">
+            <input type="tel" class="form-control" value="<?php echo $pContact['phone'] ?>" name="phone" id="phone" />
           </div>
-          <div class="form-group row">
-            <label for="function" class="col-sm-5 col-form-label">Functie</label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" value="<?php echo $pContact['function'] ?>" name="function" id="function" placeholder="">
-            </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="accessibility" class="col-sm-5 col-form-label">Bereikbaarheid</label>
+          <div class="col-sm-7">
+            <select id="accessibility" class="form-control" name="accessibility">
+              <option selected>Kiezen...</option>
+              <option>hele dag</option>
+              <option>in de middag</option>
+            </select>
           </div>
-        </form>
+        </div>
+        <div class="form-group row">
+          <label for="function" class="col-sm-5 col-form-label">Functie</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" value="<?php echo $pContact['function'] ?>" name="function" id="function" placeholder="">
+          </div>
+        </div>
+
       </div>
 
       <div class="personal-info-box">
@@ -446,6 +465,8 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
           </form>
         </div> -->
     </div>
+    <input type="submit" class="btn btn-primary" name="submitProfile" value="profiel updaten" />
+    </form>
   </section>
 
   <!--SECTION 3-->
@@ -733,11 +754,11 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
     </div>
   </section>
 
-  
+
 
   <!-- Bootsraps -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
-  <script src="./app.js"></script>
+  <script src="./welcome.js"></script>
 
 </body>
 

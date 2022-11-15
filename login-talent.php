@@ -37,7 +37,7 @@ if (array_key_exists("submit", $_POST)) {
 
           setcookie("id", $row['userId'], time() + 60 * 60 * 24 * 365);
         }
-        header("Location: talenten.php");
+        header("Location: welcome.php");
       }
     }
   }

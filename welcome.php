@@ -20,7 +20,7 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
       header('Location: professional.php');
     }
     if ($user['userType'] != 3) {
-      header('Location: index.php');
+      header('Location: begeleider.php');
     }
   }
 
@@ -29,42 +29,46 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
   $result = mysqli_query($link, $query);
   $profileData = mysqli_fetch_array($result);
 
-  if (array_key_exists("submit", $_POST)) {
-    $query = "INSERT INTO `profile`(`firstName`, `infixes`, `lastName`, `gender`, `dateOfBirth`, `userId`) VALUES ('" . mysqli_real_escape_string($link, $_POST['firstName']) . "','" . mysqli_real_escape_string($link, $_POST['infixes']) . "','" . mysqli_real_escape_string($link, $_POST['lastName']) . "','" . mysqli_real_escape_string($link, $_POST['gender']) . "','" . mysqli_real_escape_string($link, $_POST['dateOfBirth']) . "','" . $userId . "')";
-    echo $query;
-    if (mysqli_query($link, $query)) {
-      echo "Data Submitted";
-    } else {
-      echo "Error";
-    }
-  }
-
   // For contact data
   $query = "SELECT * FROM `contact` where userID = '" . $userId . "'";
   $result = mysqli_query($link, $query);
   $contact = mysqli_fetch_array($result);
-
-
-  if (array_key_exists("submit", $_POST)) {
-    $query = "INSERT INTO `contact`(`address`, `houseNumber`, `zipcode`, `city`, `province`, `phone`, `userId`) VALUES ('" . mysqli_real_escape_string($link, $_POST['address']) . "','" . mysqli_real_escape_string($link, $_POST['houseNumber']) . "','" . mysqli_real_escape_string($link, $_POST['zipcode']) . "','" . mysqli_real_escape_string($link, $_POST['city']) . "','" . mysqli_real_escape_string($link, $_POST['province']) . "','" . mysqli_real_escape_string($link, $_POST['phone']) . "','" . $userId . "')";
-    echo $query;
-    if (mysqli_query($link, $query)) {
-      echo "Data Submitted";
-    } else {
-      echo "Error";
-    }
-  }
 
   //for school
   $query = "SELECT * FROM `school` where userID = '" . $userId . "'";
   $result = mysqli_query($link, $query);
   $school = mysqli_fetch_array($result);
 
-  if (array_key_exists("submit", $_POST)) {
-    $query = "INSERT INTO `school`(`schoolName`, `schoolCode`, `education`, `attainment`, `class`, `accompanist`, `userID`) VALUES ('" . mysqli_real_escape_string($link, $_POST['schoolName']) . "','" . mysqli_real_escape_string($link, $_POST['schoolCode']) . "','" . mysqli_real_escape_string($link, $_POST['education']) . "','" . mysqli_real_escape_string($link, $_POST['attainment']) . "','" . mysqli_real_escape_string($link, $_POST['class']) . "','" . mysqli_real_escape_string($link, $_POST['accompanist']) . "','" . $userId . "')";
+
+
+  if (isset($_POST) && array_key_exists("submitProfile", $_POST)) {
+    echo "update";
+    $query = "UPDATE `profile` SET `firstName` = '" . mysqli_real_escape_string($link, $_POST['firstName']) . "', `infixes` = '" . mysqli_real_escape_string($link, $_POST['infixes']) . "', `lastName` = '" . mysqli_real_escape_string($link, $_POST['lastName']) . "', `gender` = '" . mysqli_real_escape_string($link, $_POST['gender']) . "', `dateOfBirth` = '" . mysqli_real_escape_string($link, $_POST['dateOfBirth']) . "', `userId` = " . $userId . " WHERE userId = " . $userId . "";
     echo $query;
     if (mysqli_query($link, $query)) {
-      echo "Data Submitted";
+      $query = "UPDATE `contact` SET `address`= '" . mysqli_real_escape_string($link, $_POST['address']) . "' ,`houseNumber`='" . mysqli_real_escape_string($link, $_POST['houseNumber']) . "',`zipcode`='" . mysqli_real_escape_string($link, $_POST['zipcode']) . "',`city`='" . mysqli_real_escape_string($link, $_POST['city']) . "',`province`='" . mysqli_real_escape_string($link, $_POST['province']) . "',`phone`='" . mysqli_real_escape_string($link, $_POST['phone']) . "',`userId`=  " . $userId . " WHERE userId = " . $userId . "";
+      if (mysqli_query($link, $query)) {
+        $query = "UPDATE `school` SET `schoolName`='" . mysqli_real_escape_string($link, $_POST['schoolName']) . "',`schoolCode`='" . mysqli_real_escape_string($link, $_POST['schoolCode']) . "',`education`='" . mysqli_real_escape_string($link, $_POST['education']) . "',`attainment`='" . mysqli_real_escape_string($link, $_POST['attainment']) . "',`class`='" . mysqli_real_escape_string($link, $_POST['class']) . "',`accompanist`='" . mysqli_real_escape_string($link, $_POST['accompanist']) . "',`userID`=" . $userId . " WHERE userId = " . $userId . "";
+        if (mysqli_query($link, $query)) {
+          header('Location: welcome.php');
+        } else {
+          echo "Error";
+        }
+        // header('Location: welcome.php');
+      } else {
+        echo "Error";
+      }
+      // header('Location: welcome.php');
+    } else {
+      echo "Error";
+    }
+  }
+  if (isset($_POST) && array_key_exists("submitContact", $_POST) && 1 != 1) {
+    echo "update";
+    $query = "UPDATE `profile` SET `firstName` = '" . mysqli_real_escape_string($link, $_POST['firstName']) . "', `infixes` = '" . mysqli_real_escape_string($link, $_POST['infixes']) . "', `lastName` = '" . mysqli_real_escape_string($link, $_POST['lastName']) . "', `gender` = 'M', `dateOfBirth` = '" . mysqli_real_escape_string($link, $_POST['dateOfBirth']) . "', `userId` = " . $userId . " WHERE userId = " . $userId . "";
+    echo $query;
+    if (mysqli_query($link, $query)) {
+      header('Location: welcome.php');
     } else {
       echo "Error";
     }
@@ -249,9 +253,9 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-5 col-form-label">Geslacht</label>
+            <label for="gender" class="col-sm-5 col-form-label">Geslacht</label>
             <div class="col-sm-7">
-              <select id="gender" class="form-control">
+              <select id="gender" class="form-control" name="gender">
                 <option selected>Kiezen...</option>
                 <option>Man</option>
                 <option>Vrouw</option>
@@ -288,11 +292,10 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
           </div>
         </div>
         <div class="form-group row">
-          <label for="inputPassword3" class="col-sm-5 col-form-label">Provincie</label>
+          <label for="province" class="col-sm-5 col-form-label">Provincie</label>
           <div class="col-sm-7">
-            <select id="province" class="form-control">
-              <option></option>
-              <option>Kiezen</option>
+            <select id="province" class="form-control" name="province" value="<?php echo $contact['province'] ?>">
+              <option selected>Kiezen</option>
               <option>South Holland</option>
               <option>Zealand</option>
               <option>Limburg</option>
@@ -314,7 +317,7 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
         <div class="form-group row">
           <label for="inputEmail3" class="col-sm-5 col-form-label">Schoolnaam</label>
           <div class="col-sm-7">
-            <select id="schoolName" class="form-control">
+            <select id="schoolName" class="form-control" name="schoolName">
               <option selected>Kiezen...</option>
               <option>Alphen College</option>
               <option>Apps School</option>
@@ -335,7 +338,7 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
         <div class="form-group row">
           <label for="inputPassword3" class="col-sm-5 col-form-label">Opleiding</label>
           <div class="col-sm-7">
-            <select id="education" class="form-control">
+            <select id="education" class="form-control" name="education">
               <option selected>Kiezen...</option>
               <option>vmbo</option>
               <option>Havo</option>
@@ -345,7 +348,7 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
         <div class="form-group row">
           <label for="inputPassword3" class="col-sm-5 col-form-label">Opleidingsniveau</label>
           <div class="col-sm-7">
-            <select id="attainment" class="form-control">
+            <select id="attainment" class="form-control" name="attainment">
               <option selected>Kiezen...</option>
               <option>Vmbo basis</option>
               <option>vmbo kader</option>
@@ -355,7 +358,7 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
         <div class="form-group row">
           <label for="inputPassword3" class="col-sm-5 col-form-label">Klas</label>
           <div class="col-sm-7">
-            <select id="class" class="form-control">
+            <select id="class" class="form-control" name="class">
               <option selected>Kiezen...</option>
               <option>klas 1</option>
               <option>klas 4</option>
@@ -365,7 +368,7 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
         <div class="form-group row">
           <label for="inputPassword3" class="col-sm-5 col-form-label">Begeleider</label>
           <div class="col-sm-7">
-            <select id="accompanist" class="form-control">
+            <select id="accompanist" class="form-control" name="accompanist">
               <option selected>Kiezen...</option>
               <option>Appleman, Joost</option>
             </select>
@@ -625,6 +628,10 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
             </div>
           </div>
         </div>
+      </div>
+
+      <input type="submit" class="btn btn-primary" name="submitProfile" value="profiel updaten" />
+      </form>
   </section>
 
   <!--SECTION 3-->

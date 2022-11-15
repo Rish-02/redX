@@ -1,11 +1,12 @@
 <?php
+ob_start();
 include('connection.php');
 include('header-min.php');
 // if(!isset($_SESSION)) 
 //     { 
 //         session_start(); 
 //     } 
-if(!isset($_SESSION) || !array_key_exists("id", $_SESSION) ) {
+if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
   header("Location: login-coach.php");
 }
 $userId = $_SESSION['id'];
@@ -17,36 +18,50 @@ $query = "SELECT * FROM `login` where userID = '" . $userId . "'";
 $result = mysqli_query($link, $query);
 $user = mysqli_fetch_array($result);
 
-if($user['userType' != 3]) {
-  if($user['userType'] == 2){
+if ($user['userType' != 3]) {
+  if ($user['userType'] == 2) {
     header('Location: professional.php');
   }
-  if($user['userType']== 1){
-    header('Location: talenten.php');
+  if ($user['userType'] == 1) {
+    header('Location: welcome.php');
   }
 }
-
-// For company data
-$query = "SELECT * FROM `company` where userID = '" . $userId . "'";
-$result = mysqli_query($link, $query);
-$company = mysqli_fetch_array($result);
-
-// For contact data
-$query = "SELECT * FROM `pContact` where userID = '" . $userId . "'";
-$result = mysqli_query($link, $query);
-$pContact = mysqli_fetch_array($result);
-
 // For profile data
 $query = "SELECT * FROM `profile` where userID = '" . $userId . "'";
 $result = mysqli_query($link, $query);
 $profileData = mysqli_fetch_array($result);
 
-
-
 // For profile data
 $query = "SELECT * FROM `contact` where userID = '" . $userId . "'";
 $result = mysqli_query($link, $query);
 $contact = mysqli_fetch_array($result);
+
+//for school
+$query = "SELECT * FROM `school` where userID = '" . $userId . "'";
+$result = mysqli_query($link, $query);
+$school = mysqli_fetch_array($result);
+
+if (isset($_POST) && array_key_exists("submitProfile", $_POST)) {
+  echo "update";
+  $query = "UPDATE `profile` SET `firstName` = '" . mysqli_real_escape_string($link, $_POST['firstName']) . "', `infixes` = '" . mysqli_real_escape_string($link, $_POST['infixes']) . "', `lastName` = '" . mysqli_real_escape_string($link, $_POST['lastName']) . "', `gender` = '" . mysqli_real_escape_string($link, $_POST['gender']) . "',`userId`= " . $userId . " WHERE userId = " . $userId . "";
+  echo $query;
+  if (mysqli_query($link, $query)) {
+    $query = "UPDATE `contact` SET `address`= '" . mysqli_real_escape_string($link, $_POST['address']) . "' ,`houseNumber`='" . mysqli_real_escape_string($link, $_POST['houseNumber']) . "',`zipcode`='" . mysqli_real_escape_string($link, $_POST['zipcode']) . "',`city`='" . mysqli_real_escape_string($link, $_POST['city']) . "',`province`='" . mysqli_real_escape_string($link, $_POST['province']) . "',`phone`='" . mysqli_real_escape_string($link, $_POST['phone']) . "',`userId`=  " . $userId . " WHERE userId = " . $userId . "";
+    if (mysqli_query($link, $query)) {
+      $query = "UPDATE `school` SET `schoolName`='" . mysqli_real_escape_string($link, $_POST['schoolName']) . "',`schoolCode`='" . mysqli_real_escape_string($link, $_POST['schoolCode']) . "',`userID`=" . $userId . " WHERE userId = " . $userId . "";
+      if (mysqli_query($link, $query)) {
+        header('Location: begeleider.php');
+      } else {
+        echo "Error";
+      }
+    } else {
+      echo "Error";
+    }
+    // header('Location: welcome.php');
+  } else {
+    echo "Error";
+  }
+}
 
 ?>
 
@@ -169,12 +184,12 @@ $contact = mysqli_fetch_array($result);
             <div class="col-sm-5 text-center"><img class="dp-profile" src="dp.jpg"></div>
             <div class="col-sm-7">
               <div class="account-details">
-                <!-- <h2 class="profile-name"><?php echo $profileData['firstName'] . ' ' . $profileData['lastName'] ?></h2>
+                <h2 class="profile-name"><?php echo $profileData['firstName'] . ' ' . $profileData['lastName'] ?></h2>
                 <h4 class="profile-address"><?php echo $contact['address'] ?></h4><br>
-                <p class="profile-email"><a href=""><?php echo $user['email'] ?></a></p> -->
-                <h2 class="profile-name">Joost Appleman</h2>
+                <p class="profile-email"><a href=""><?php echo $user['email'] ?></a></p>
+                <!-- <h2 class="profile-name">Joost Appleman</h2>
                 <h4 class="profile-address">A. van Leeuwenhoekweg 2411 AN</h4><br>
-                <p class="profile-email"><a href="">supervisor2@nmoprojecten.nl</a></p>
+                <p class="profile-email"><a href="">supervisor2@nmoprojecten.nl</a></p> -->
               </div>
             </div>
           </div>
@@ -213,7 +228,7 @@ $contact = mysqli_fetch_array($result);
           <div class="form-group row">
             <label for="inputPassword3" class="col-sm-5 col-form-label">Geslacht</label>
             <div class="col-sm-7">
-              <select id="gender" class="form-control">
+              <select id="gender" class="form-control" name="gender">
                 <option selected>Kiezen...</option>
                 <option>Man</option>
                 <option>Vrouw</option>
@@ -225,72 +240,72 @@ $contact = mysqli_fetch_array($result);
       <div class="personal-info-box">
         <h4>Contactgegevens</h4>
         <!-- <form method="POST"> -->
-          <div class="form-group row">
-            <label for="address" class="col-sm-5 col-form-label">Adres & huisnummer</label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" value="<?php echo $contact['address'] ?> " name="address" id="address" placeholder="">
-            </div>
-            <label for="houseNumber" class="col-sm-5 col-form-label"></label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" value="<?php echo $contact['houseNumber'] ?> " name="houseNumber" id="houseNumber" placeholder="">
-            </div>
+        <div class="form-group row">
+          <label for="address" class="col-sm-5 col-form-label">Adres & huisnummer</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" value="<?php echo $contact['address'] ?> " name="address" id="address" placeholder="">
           </div>
-          <div class="form-group row">
-            <label for="zipcode city" class="col-sm-5 col-form-label">Postcode & plaats</label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" name="zipcode" id="zipcode" value="<?php echo $contact['zipcode'] ?> " placeholder="">
-              <input type="text" class="form-control" name="city" value="<?php echo $contact['city'] ?> " id="city" placeholder="">
-            </div>
+          <label for="houseNumber" class="col-sm-5 col-form-label"></label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" value="<?php echo $contact['houseNumber'] ?> " name="houseNumber" id="houseNumber" placeholder="">
           </div>
-          <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-5 col-form-label">Provincie</label>
-            <div class="col-sm-7">
-              <select id="province" class="form-control">
-                <option></option>
-                <option>Kiezen</option>
-                <option>South Holland</option>
-                <option>Zealand</option>
-                <option>Limburg</option>
-              </select>
-            </div>
+        </div>
+        <div class="form-group row">
+          <label for="zipcode city" class="col-sm-5 col-form-label">Postcode & plaats</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" name="zipcode" id="zipcode" value="<?php echo $contact['zipcode'] ?> " placeholder="">
+            <input type="text" class="form-control" name="city" value="<?php echo $contact['city'] ?> " id="city" placeholder="">
           </div>
-          <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-5 col-form-label">Telefoon</label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" name="phone" value="<?php echo $contact['phone'] ?>" id="phone" placeholder="">
-            </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-sm-5 col-form-label">Provincie</label>
+          <div class="col-sm-7">
+            <select id="province" class="form-control" name="province">
+              <option></option>
+              <option>Kiezen</option>
+              <option>South Holland</option>
+              <option>Zealand</option>
+              <option>Limburg</option>
+            </select>
           </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-sm-5 col-form-label">Telefoon</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" name="phone" value="<?php echo $contact['phone'] ?>" id="phone" placeholder="">
+          </div>
+        </div>
       </div>
 
       <div class="personal-info-box">
         <h4>School</h4>
         <!-- <form method="POST"> -->
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-5 col-form-label">Schoolnaam</label>
-            <div class="col-sm-7">
-              <select id="schoolName" class="form-control">
-                <option selected>Kiezen...</option>
-                <option>Alphen College</option>
-                <option>Apps School</option>
-              </select>
-            </div>
+        <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-5 col-form-label">Schoolnaam</label>
+          <div class="col-sm-7">
+            <select id="schoolName" class="form-control" name="province">
+              <option selected>Kiezen...</option>
+              <option>Alphen College</option>
+              <option>Apps School</option>
+            </select>
           </div>
-          <div class="form-group row">
-            <label for="schoolCode" class="col-sm-5 col-form-label">Schoolcode</label>
-            <div class="col-sm-7">
-              <input type="text" class="form-control" name="schoolCode" value="<?php echo $school['schoolCode'] ?>" id="schoolCode" placeholder="">
-            </div>
-            <label for="inputPassword3" class="col-sm-5 col-form-label"></label>
-            <div class="col-sm-7">
-              <p id="subline">Deze code wordt gebruikt voor verificatiedoeleinden. Neem contact op met uw beheerder als deze code bij u (nog) niet bekend is.</p>
-            </div>
+        </div>
+        <div class="form-group row">
+          <label for="schoolCode" class="col-sm-5 col-form-label">Schoolcode</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" name="schoolCode" value="<?php echo $school['schoolCode'] ?>" id="schoolCode" placeholder="">
           </div>
+          <label for="inputPassword3" class="col-sm-5 col-form-label"></label>
+          <div class="col-sm-7">
+            <p id="subline">Deze code wordt gebruikt voor verificatiedoeleinden. Neem contact op met uw beheerder als deze code bij u (nog) niet bekend is.</p>
+          </div>
+        </div>
       </div>
-      <button type="submit" name="submit" id="submit">profiel updaten</button>
+      <button type="submit" name="submitProfile" id="submit">profiel updaten</button>
   </section>
 
 
-  <section for="mijn talenten" class="main-option-view" id="mijn-talenten">
+  <section for="professionals" class="main-option-view" id="professionals">
     <div class="personal-info container">
       <div class="profile-heading">
         <h4 class="head">professionals</h4>
@@ -371,46 +386,46 @@ $contact = mysqli_fetch_array($result);
           </div>
         </div>
       </div>
-      
+
       <!-- Large modal -->
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">=</button>
 
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <table class="table">
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First</th>
+                  <th scope="col">Last</th>
+                  <th scope="col">Handle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
 
       <div class="intern-card">
         <div class="container">
@@ -429,7 +444,7 @@ $contact = mysqli_fetch_array($result);
               <button type="submit" name="submit" id="btn-submit">Stageoverzicht</button>
             </div>
             <div class="col">
-    
+
             </div>
           </div>
         </div>
@@ -451,7 +466,7 @@ $contact = mysqli_fetch_array($result);
               <button type="submit" name="submit" id="btn-submit">Stageoverzicht</button>
             </div>
             <div class="col">
-              
+
             </div>
           </div>
         </div>
@@ -473,7 +488,7 @@ $contact = mysqli_fetch_array($result);
               <button type="submit" name="submit" id="btn-submit">Stageoverzicht</button>
             </div>
             <div class="col">
-              
+
             </div>
           </div>
         </div>
@@ -495,7 +510,7 @@ $contact = mysqli_fetch_array($result);
               <button type="submit" name="submit" id="btn-submit">Stageoverzicht</button>
             </div>
             <div class="col">
-              
+
             </div>
           </div>
         </div>
@@ -753,7 +768,7 @@ $contact = mysqli_fetch_array($result);
 
   <!-- Bootsraps -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
-  <script src="./app.js"></script>
+  <script src="./welcome.js"></script>
 
 </body>
 

@@ -53,6 +53,13 @@ function changeView(element) {
         $(".error404").css("display", "none");
         $(".profile-description").css("display", "block");
     }
+    else if($(element).html() == "Professionals"){
+        console.log("inside");
+        $(".main-option-view").css("display", "none");
+        $("#professionals").css("display", "block");
+        $(".error404").css("display", "none");
+        $(".profile-description").css("display", "block");
+    }
     // else{
     //     $(".main-option-view").css("display", "none");
     //     $(".profile-description").css("display", "none");

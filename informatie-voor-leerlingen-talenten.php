@@ -16,7 +16,7 @@ if (array_key_exists("submit", $_POST)) {
     $link = mysqli_connect($host, $user, $password, $db);
     $query = "SELECT * FROM `login` WHERE email = '" . mysqli_real_escape_string($link, $_POST['email']) . "'";
 
-    if($query == ""){
+    if ($query == "") {
       $error = "<script>alert('That email/password combination could not be found.')</script>";
     }
 
@@ -39,7 +39,7 @@ if (array_key_exists("submit", $_POST)) {
         }
         // echo "<br>logged in";
         if ($row['userType' == 1]) {
-          header("Location: talenten.php");
+          header("Location: welcome.php");
         } else if ($row['userType' == 2]) {
           header("Location: professional.php");
         }
@@ -99,9 +99,9 @@ if (array_key_exists("submit", $_POST)) {
     <hr style="background-color:#48c16a;margin-top:-15px;">
     <p style="font-family:Calibri;">Deze website is het platform om een passende stage te vinden. Hoe beter jij je profiel invult, hoe groter de kans dat er een interessante professional aan jou wordt gelinkt.<br><br>
 
-Voor vragen kun je altijd terecht bij je coach/mentor of bij de decaan/stagecoördinator van jouw school.<br><br>
+      Voor vragen kun je altijd terecht bij je coach/mentor of bij de decaan/stagecoördinator van jouw school.<br><br>
 
-Heel veel succes!</p>
+      Heel veel succes!</p>
   </div>
   <script>
     // document.getElementById('submit').click(function(event) {

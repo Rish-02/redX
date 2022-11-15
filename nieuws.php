@@ -16,7 +16,7 @@ if (array_key_exists("submit", $_POST)) {
     $link = mysqli_connect($host, $user, $password, $db);
     $query = "SELECT * FROM `login` WHERE email = '" . mysqli_real_escape_string($link, $_POST['email']) . "'";
 
-    if($query == ""){
+    if ($query == "") {
       $error = "<script>alert('That email/password combination could not be found.')</script>";
     }
 
@@ -39,7 +39,7 @@ if (array_key_exists("submit", $_POST)) {
         }
         // echo "<br>logged in";
         if ($row['userType' == 1]) {
-          header("Location: talenten.php");
+          header("Location: welcome.php");
         } else if ($row['userType' == 2]) {
           header("Location: professional.php");
         }
