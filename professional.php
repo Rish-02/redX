@@ -50,9 +50,9 @@ if (!isset($_SESSION) || !array_key_exists("id", $_SESSION)) {
 
 
   if (isset($_POST) && array_key_exists("submitProfile", $_POST)) {
-    echo "update";
+    // echo "update";
     $query = "UPDATE `company` SET `companyName`='" . mysqli_real_escape_string($link, $_POST['companyName']) . "',`address`='" . mysqli_real_escape_string($link, $_POST['address']) . "',`addNumber`='[value-3]',`zipcode`='" . mysqli_real_escape_string($link, $_POST['zipcode']) . "',`city`='" . mysqli_real_escape_string($link, $_POST['city']) . "',`province`='" . mysqli_real_escape_string($link, $_POST['province']) . "',`phone`='" . mysqli_real_escape_string($link, $_POST['phone']) . "',`website`='" . mysqli_real_escape_string($link, $_POST['website']) . "',`userId`= " . $userId . " WHERE userId = " . $userId . "";
-    echo $query;
+    // echo $query;
     if (mysqli_query($link, $query)) {
       $query = "UPDATE `pcontact` SET `initials`='" . mysqli_real_escape_string($link, $_POST['initials']) . "',`infixes`='" . mysqli_real_escape_string($link, $_POST['infixes']) . "',`lastName`='" . mysqli_real_escape_string($link, $_POST['lastName']) . "',`sex`='" . mysqli_real_escape_string($link, $_POST['sex']) . "',`phone`='" . mysqli_real_escape_string($link, $_POST['phone']) . "',`accessibility`='" . mysqli_real_escape_string($link, $_POST['accessibility']) . "',`function`='" . mysqli_real_escape_string($link, $_POST['function']) . "',`userId`= " . $userId . " WHERE userId = " . $userId . "";
       if (mysqli_query($link, $query)) {

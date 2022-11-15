@@ -42,9 +42,9 @@ $result = mysqli_query($link, $query);
 $school = mysqli_fetch_array($result);
 
 if (isset($_POST) && array_key_exists("submitProfile", $_POST)) {
-  echo "update";
+  // echo "update";
   $query = "UPDATE `profile` SET `firstName` = '" . mysqli_real_escape_string($link, $_POST['firstName']) . "', `infixes` = '" . mysqli_real_escape_string($link, $_POST['infixes']) . "', `lastName` = '" . mysqli_real_escape_string($link, $_POST['lastName']) . "', `gender` = '" . mysqli_real_escape_string($link, $_POST['gender']) . "',`userId`= " . $userId . " WHERE userId = " . $userId . "";
-  echo $query;
+  // echo $query;
   if (mysqli_query($link, $query)) {
     $query = "UPDATE `contact` SET `address`= '" . mysqli_real_escape_string($link, $_POST['address']) . "' ,`houseNumber`='" . mysqli_real_escape_string($link, $_POST['houseNumber']) . "',`zipcode`='" . mysqli_real_escape_string($link, $_POST['zipcode']) . "',`city`='" . mysqli_real_escape_string($link, $_POST['city']) . "',`province`='" . mysqli_real_escape_string($link, $_POST['province']) . "',`phone`='" . mysqli_real_escape_string($link, $_POST['phone']) . "',`userId`=  " . $userId . " WHERE userId = " . $userId . "";
     if (mysqli_query($link, $query)) {
