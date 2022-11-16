@@ -63,6 +63,46 @@ if (isset($_POST) && array_key_exists("submitProfile", $_POST)) {
   }
 }
 
+//change password
+if(isset($_POST['change-password']))
+{
+  $currentPass = $_POST['currentPass'];
+  $newPass = $_POST['newPass'];
+  $repeatPass = $_POST['repeatPass'];
+  $sql = "Select password from login where userId = ".$userId."";
+  $result = mysqli_query($link ,$sql);
+  $row = mysqli_fetch_array($result);
+  unset($error);
+  if($currentPass == $row['password']){
+    if($newPass == ''){
+      $error = "Please enter a valid password";
+    }
+    if($repeatPass == ''){
+      $error = $error.'\n Please confirm password';
+    }
+    if($newPass != $repeatPass){
+      $error = $error.'\n Password do not match';
+    }
+  } else {
+    $error = "Invalid current password";
+  }
+  if (!isset($error)){
+    $query = "UPDATE login SET password = '".$newPass."' WHERE userId = ".$userId."";
+    $result= mysqli_query($link , $query);
+    if($result){
+      session_unset();
+      header("location: login-coach.php");
+      // print_r($result);
+    }
+    else{
+      echo "<script>alert('something went wrong')</script>";
+    }
+  } else {
+    echo "<script>alert('".nl2br($error)."')</script>";
+    unset($_POST);
+  }
+}
+
 ?>
 
 
@@ -661,21 +701,22 @@ if (isset($_POST) && array_key_exists("submitProfile", $_POST)) {
                 <div class="form-group row">
                   <label for="currentPass" class="col-sm-5 col-form-label">huidig wachtwoord</label>
                   <div class="col-sm-7">
-                    <input type="text" class="form-control" value="" name="currentPass" id="currentPass" placeholder="">
+                    <input type="password" class="form-control" value="" name="currentPass" id="currentPass" placeholder="">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="newPass" class="col-sm-5 col-form-label">nieuw wachtwoord</label>
                   <div class="col-sm-7">
-                    <input type="text" class="form-control" value="" name="newPass" id="newPass" placeholder="">
+                    <input type="password" class="form-control" value="" name="newPass" id="newPass" placeholder="">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="repeatPass" class="col-sm-5 col-form-label">herhaal wachtwoord</label>
                   <div class="col-sm-7">
-                    <input type="text" class="form-control" value="" name="repeatPass" id="repeatPass" placeholder="">
+                    <input type="password" class="form-control" value="" name="repeatPass" id="repeatPass" placeholder="">
                   </div>
                 </div>
+                <input type="submit" class="btn btn-success" name="change-password" value="Change Password"/>
               </form>
             </div>
           </div>
